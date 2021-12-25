@@ -35,7 +35,9 @@ const LogInScreen = ({ navigation }) => {
       <TextInput style={styles.iStyle} placeholder="Email" />
           <TextInput style={styles.iStyle} placeholder="Password" />
           <TouchableOpacity style={styles.bStyle}
-          
+          onPress={ () =>
+            navigation.navigate("HomeScreen")
+          }
           >
             <Text style={styles.bTStyle}>Login</Text>
           </TouchableOpacity>
