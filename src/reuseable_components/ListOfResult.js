@@ -18,8 +18,8 @@ const ListOfResult = ({ titleData,subtitleData, resultsData,subtitleOnpress, nav
     <TouchableOpacity
               onPress={()=> {
                 console.log("Hello");
-                navigation.navigate("LogInScreen");
-              } 
+                navigation.navigate(`${subtitleOnpress}`);
+              }
               }
             >
 

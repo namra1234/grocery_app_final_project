@@ -57,16 +57,17 @@ const HomeScreen = ({ navigation }) => {
           titleData="Weekly Offers"
           subtitleData="         View All"
           resultsData={resData}
-          subtitleOnpress="HomeScreen"
-          
+          subtitleOnpress="WeeklyOffers"          
         />
         <ListOfResult
           resultsData={resData}
           subtitleData="View All"
           titleData="Favourite Products"
-          subtitleOnpress="HomeScreen"
+          subtitleOnpress="FavouriteProduct"
         /> 
-        <ListOfALLResult resultsData={resData} titleData="All Product" />
+        <ListOfALLResult resultsData={resData} titleData="All Product       " subtitleOnpress="AllProduct"
+          subtitleData="       View All"
+        />
       </ScrollView>
     </View></SafeAreaView>
   );

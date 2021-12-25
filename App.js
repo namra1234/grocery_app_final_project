@@ -4,6 +4,9 @@ import LogInScreen from "./src/screens/LogInScreen"
 import SignupScreen from "./src/screens/SignupScreen"
 import HomeScreen from "./src/screens/HomeScreen"
 import displayDataScreen from "./src/screens/displayDataScreen"
+import FavouriteProduct from "./src/screens/FavouriteProduct"
+import WeeklyOffers from "./src/screens/WeeklyOffers"
+import AllProduct from "./src/screens/AllProduct"
 
 const navigator = createStackNavigator(
   {
@@ -11,6 +14,9 @@ const navigator = createStackNavigator(
     SignupScreen: SignupScreen,
     HomeScreen: HomeScreen,
     displayDataScreen:displayDataScreen,
+    WeeklyOffers:WeeklyOffers,
+    FavouriteProduct:FavouriteProduct,
+    AllProduct:AllProduct
   },
   {
     initialRouteName: "LogInScreen",
