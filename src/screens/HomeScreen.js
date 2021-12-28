@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
     <View>
     <View style={{
             flexDirection: "row",
-            alignSelf: "flex-start",            
+           justifyContent:"space-between"            
           }}>
     <Text style={styles.logoStyle}>  Grocery Farm</Text>
     <Feather name="shopping-cart" size={20} style={styles.Icon} />
@@ -63,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView style={{ padding: 20 ,height:600}}>
         <ListOfResult          
           titleData="Weekly Offers"
-          subtitleData="         View All"
+          subtitleData="View All"
           resultsData={resData}
           subtitleOnpress="WeeklyOffers"          
         />
@@ -73,8 +73,8 @@ const HomeScreen = ({ navigation }) => {
           titleData="Favourite Products"
           subtitleOnpress="FavouriteProduct"
         /> 
-        <ListOfALLResult resultsData={resData} titleData="All Product       " subtitleOnpress="AllProduct"
-          subtitleData="       View All"
+        <ListOfALLResult resultsData={resData} titleData="All Product" subtitleOnpress="AllProduct"
+          subtitleData="View All"
         />
       </ScrollView>
     </View></SafeAreaView>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     Icon: {
       marginRight: 20,
       marginBottom:5,
-      marginLeft:"25%",
+     
       fontSize: 34,
       alignSelf:"flex-end"
     },

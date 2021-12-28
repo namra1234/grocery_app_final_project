@@ -12,7 +12,7 @@ const ListOfResult = ({ titleData,subtitleData, resultsData,subtitleOnpress, nav
     <View>
     <View style={{
       flexDirection:"row",
-      alignContent:"space-between"
+      justifyContent:"space-between"
     }}>
     <Text style={styles.titleData}>{titleData}</Text>
     <TouchableOpacity
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   titleData: {
     fontSize: 18,
     fontWeight: "bold",
-    color:"#1B7505"
+    color:"black"
   },
   subtitleData: {
     fontSize: 18,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     color:"#1B7505",
     alignSelf:"flex-end",
     marginRight:20,
-    marginLeft:130
+    marginLeft:130,
   },
   headingStyle:{
     fontSize: 18,

@@ -19,7 +19,7 @@ const ListOfALLResult = ({
       <View
         style={{
           flexDirection: "row",
-          alignContent: "space-between",
+          justifyContent: "space-between",
         }}
       >
         <Text style={styles.titleData}>{titleData}</Text>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   titleData: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#1B7505",
+    color: "black",
   },
   subtitleData: {
     fontSize: 18,
