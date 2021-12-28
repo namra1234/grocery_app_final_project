@@ -55,7 +55,7 @@ const LogInScreen = ({ navigation }) => {
             Don't have an account?
             <TouchableOpacity onPress={ () =>
             navigation.navigate("SignupScreen")
-          }><Text style={{ color: "#1B7505" }}> Sign Up</Text></TouchableOpacity>
+          }><Text style={{ color: "#1B7505",marginTop:10 }}>    Sign Up</Text></TouchableOpacity>
             
           </Text>
       </ScrollView>

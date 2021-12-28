@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import SearchComponent from "../reuseable_components/SearchComponent";
 import userResults from "../result_data/userResults";
+import { Feather } from "@expo/vector-icons";
 
 
 const HomeScreen = ({ navigation }) => {
@@ -45,7 +46,14 @@ const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.conStyle}>
     <View>
-    <Text style={styles.logoStyle}>Grocery Farm</Text>
+    <View style={{
+            flexDirection: "row",
+            alignSelf: "flex-start",            
+          }}>
+    <Text style={styles.logoStyle}>  Grocery Farm</Text>
+    <Feather name="shopping-cart" size={20} style={styles.Icon} />
+    </View>
+    
       <SearchComponent        
         word={givenWord}
         onWordChange={setword}
@@ -79,9 +87,17 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 45,    
     },
+    Icon: {
+      marginRight: 20,
+      marginBottom:5,
+      marginLeft:"25%",
+      fontSize: 34,
+      alignSelf:"flex-end"
+    },
     logoStyle: {    
-        fontSize: 40,
-        alignSelf: "center",
+        fontSize: 38,
+        // marginRight:30,
+        alignSelf: "flex-start",
         fontWeight: "bold",
         color: "#1B7505",
         fontFamily: "MooLahLah-Regular",
