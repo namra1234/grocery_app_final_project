@@ -40,9 +40,9 @@ const ListOfALLResult = ({
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-            // onPress={() =>
-            //   navigation.navigate("displayDataScreen", { id: item.id })
-            // }
+            onPress={() =>
+                navigation.navigate("DetailScreen", {productData: item })
+              }
             >
               <View style={{ padding: 10, alignItems: "center", width: 180 }}>
                 <Image
@@ -51,7 +51,7 @@ const ListOfALLResult = ({
                 />
                 <Text>{item.name}</Text>
                 <Text>{item.price}</Text>
-                <Text>{item.quantity}</Text>
+                <Text>{item.weight}</Text>
               </View>
             </TouchableOpacity>
           );
