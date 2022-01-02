@@ -43,3 +43,6 @@ export  const allProductData = [
     { id: "35",isInCart:false,isFavourite:"true", qty:"1", name: "White Bread",price: 3,weight:" 200 gm", image: `https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00027900000756/e04041efa46d61a60398bf35b99923be_large.png&width=512&type=webp&quality=80` },
     { id: "36",isInCart:false,isFavourite:"true", qty:"1", name: "Tomato",price: 2,weight:" 200 gm", image: `https://media.istockphoto.com/photos/cherry-tomatoes-isolated-on-white-background-picture-id1154803469?b=1&k=20&m=1154803469&s=170667a&w=0&h=OzPClwm6nKAGhWeYp3BMtmfePaaheAuR9dsoN8750No=` },
   ];
+
+export var cartData = [ 
+];

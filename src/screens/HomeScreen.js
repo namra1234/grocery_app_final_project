@@ -13,10 +13,12 @@ import SearchComponent from "../reuseable_components/SearchComponent";
 import  userResults from "../result_data/userResults";
 import * as constants from "../constant/constant.js";
 import { Feather } from "@expo/vector-icons";
+import { NavigationEvents } from "react-navigation";
 
 
 const HomeScreen = ({ navigation }) => {
   const [givenWord, setword] = useState("");
+  const [cartNumber, setcartNumber] = useState(constants.cartData.length);
   // const [searchApi, resData, errorInfo] = userResults();
 
 
@@ -32,14 +34,48 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
+    
     <SafeAreaView style={styles.conStyle}>
+    <NavigationEvents
+
+      onDidFocus={()=>{
+        setcartNumber(constants.cartData.length);
+      }}
+/>
     <View>
     <View style={{
             flexDirection: "row",
            justifyContent:"space-between"            
           }}>
     <Text style={styles.logoStyle}>  Grocery Farm</Text>
+    <View style={{flex:1, alignItems: 'flex-end',  justifyContent:'flex-end'}}>
     <Feather name="shopping-cart" size={20} style={styles.Icon} />
+    {constants.cartData.length >= 0 ? (
+                  <View
+                    style={{     
+                      position: 'absolute',
+                      backgroundColor: 'red',
+                      width: 20,
+                      height: 20,
+                      borderRadius: 20,
+                      right: 20,
+                      top: +10,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: "#FFFFFF",
+                        fontSize:15,
+                      }}>
+                      {constants.cartData.length}
+                    </Text>
+                  </View>
+                ) : null}
+    </View>
+    
     </View>
     
       <SearchComponent        
@@ -76,8 +112,8 @@ const styles = StyleSheet.create({
       paddingTop: 45,    
     },
     Icon: {
-      marginRight: 20,
-      marginBottom:5,
+      marginRight: 30,
+      // marginBottom:5,
      
       fontSize: 34,
       alignSelf:"flex-end"

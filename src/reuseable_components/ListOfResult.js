@@ -37,7 +37,8 @@ const ListOfResult = ({ titleData,subtitleData, resultsData,subtitleOnpress, nav
             <TouchableOpacity
               onPress={()=>{
                 console.log(item),
-                navigation.navigate("DetailScreen", {productData: item })
+                navigation.navigate("DetailScreen", {productData: item ,
+                })
               }
               }
             >

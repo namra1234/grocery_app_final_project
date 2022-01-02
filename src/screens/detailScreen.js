@@ -10,6 +10,7 @@ import {
 import { FlatList } from "react-native-gesture-handler";
 import { withNavigation } from "react-navigation";
 import { Feather, AntDesign } from "@expo/vector-icons";
+import * as constants from "../constant/constant.js";
 
 const DetailScreen = ({ navigation }) => {
   const productData = navigation.getParam("productData");
@@ -25,7 +26,13 @@ const DetailScreen = ({ navigation }) => {
             flexDirection: "row",
           }}
         >
+        <TouchableOpacity
+            onPress={() => {
+              navigation.pop();
+            }}
+          >
           <Feather name="arrow-left" size={20} style={styles.Icon} />
+          </TouchableOpacity>
           <Text style={styles.logoStyle}> Product</Text>
         </View>
         <View
@@ -112,7 +119,7 @@ const DetailScreen = ({ navigation }) => {
             >
               <TouchableOpacity
                 onPress={() => {
-                  if (count > 0) {
+                  if (count > 1) {
                     setCount(count - 1);
                     var temp=count-1;
                   productData.qty = "" + temp;
@@ -131,6 +138,11 @@ const DetailScreen = ({ navigation }) => {
                   setCount(count + 1);
                   var temp=count+1;
                   productData.qty = "" + temp;
+
+                  constants.cartData.forEach((element)=>{
+                    console.log("helloo");
+                      console.log(element);
+                  });
                 }}
               >
                 <View style={styles.smallbuttonStyle}>
@@ -148,12 +160,12 @@ const DetailScreen = ({ navigation }) => {
         </View>
         
       </View>      
-
       {productData.isInCart ? 
          <TouchableOpacity style={styles.removebuttonStyle}
-                onPress={() => {
+                onPress={() => {                  
                   productData.isInCart=false;
                   setisInCart(productData.isInCart);
+                  constants.cartData=constants.cartData.filter(item => item !== productData)
                 }}
               >                
                 <Text style={styles.incrementIconStyle}> Remove From Cart</Text>             
@@ -165,6 +177,7 @@ const DetailScreen = ({ navigation }) => {
                 onPress={() => {
                   productData.isInCart=true;
                   setisInCart(productData.isInCart);
+                  constants.cartData.push(productData);                  
                 }}
               >
                 
@@ -300,8 +313,8 @@ const styles = StyleSheet.create({
   },
   StartIcon: {
     marginTop: 10,
-    fontSize: 20,
-    color: "orange",
+    // fontSize: 20,
+    // color: "orange",
   },
   favIcon: {
     marginTop: 10,
