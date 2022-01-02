@@ -14,6 +14,7 @@ import { Feather, AntDesign } from "@expo/vector-icons";
 const DetailScreen = ({ navigation }) => {
   const productData = navigation.getParam("productData");
   const [isFavourite, setisFavourite] = useState(productData.isFavourite);
+  const [isInCart, setisInCart] = useState(productData.isInCart);
   const [count, setCount] = useState(Math.round(productData.qty));
 
   return (
@@ -139,11 +140,39 @@ const DetailScreen = ({ navigation }) => {
             </View>
             <Text style={styles.smallheadingStyle}>
               Price -{" "}
-              <Text style={styles.smallTextStyle}>{productData.price}</Text>{" "}
+              <Text style={styles.smallTextStyle}>$ {productData.price}</Text>{" "}
             </Text>
           </View>
+
+         
         </View>
-      </View>
+        
+      </View>      
+
+      {productData.isInCart ? 
+         <TouchableOpacity style={styles.removebuttonStyle}
+                onPress={() => {
+                  productData.isInCart=false;
+                  setisInCart(productData.isInCart);
+                }}
+              >                
+                <Text style={styles.incrementIconStyle}> Remove From Cart</Text>             
+              </TouchableOpacity>
+      
+      
+      :
+      <TouchableOpacity style={styles.buttonStyle}
+                onPress={() => {
+                  productData.isInCart=true;
+                  setisInCart(productData.isInCart);
+                }}
+              >
+                
+                  <Text style={styles.incrementIconStyle}> Add to Cart </Text>
+                
+              </TouchableOpacity>
+
+      }
     </SafeAreaView>
   );
 };
@@ -159,6 +188,32 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 50,
     alignItems: "center",
+    // marginHorizontal: 5,
+  },
+  buttonStyle: {
+    backgroundColor: "#1B7505",
+    width: "80%" ,
+    height: 50,
+    borderRadius: 10,
+    alignItems: "center",
+    alignSelf:"center",
+    position:"absolute",
+    justifyContent:"center",
+    bottom:30,
+    
+    // marginHorizontal: 5,
+  },
+  removebuttonStyle: {
+    backgroundColor: "gray",
+    width: "80%" ,
+    height: 50,
+    borderRadius: 10,
+    alignItems: "center",
+    alignSelf:"center",
+    position:"absolute",
+    justifyContent:"center",
+    bottom:30,
+    
     // marginHorizontal: 5,
   },
   conStyle: {

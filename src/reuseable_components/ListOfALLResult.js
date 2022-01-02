@@ -50,7 +50,7 @@ const ListOfALLResult = ({
                   source={{ uri: item.image }}
                 />
                 <Text>{item.name}</Text>
-                <Text>{item.price}</Text>
+                <Text>$ {item.price}</Text>
                 <Text>{item.weight}</Text>
               </View>
             </TouchableOpacity>

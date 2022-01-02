@@ -44,7 +44,7 @@ const ListOfResult = ({ titleData,subtitleData, resultsData,subtitleOnpress, nav
               <View style={{ padding: 10, alignItems: "center" }}>
                 <Image style={styles.imagesStyle} source={{ uri: item.image }} />
                 <Text style={styles.headingStyle}>{item.name}</Text>
-                <Text>{item.price}      {item.weight}</Text>               
+                <Text>$ {item.price}      {item.weight}</Text>               
               </View>
             </TouchableOpacity>
           );
