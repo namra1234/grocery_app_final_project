@@ -22,12 +22,6 @@ const SignupScreen = ({ navigation }) => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
 
-  let [fontsLoaded] = useFonts({
-    "MooLahLah-Regular": require("../../assets/fonts/Moo Lah Lah Regular.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
   return (
 
     <SafeAreaView style={styles.conStyle}>
@@ -118,7 +112,7 @@ const SignupScreen = ({ navigation }) => {
 
 
   );
-}
+
 };
 
 const styles = StyleSheet.create({

@@ -17,12 +17,6 @@ import React, { useState } from "react";
 
 const LogInScreen = ({ navigation }) => {
 
-  let [fontsLoaded] = useFonts({
-    "MooLahLah-Regular": require("../../assets/fonts/Moo Lah Lah Regular.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
   return (
 
     <SafeAreaView style={styles.conStyle}>
@@ -65,7 +59,7 @@ const LogInScreen = ({ navigation }) => {
 
 
   );
-}
+
 };
 
 const styles = StyleSheet.create({
