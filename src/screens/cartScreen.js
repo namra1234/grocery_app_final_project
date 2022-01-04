@@ -81,6 +81,7 @@ const styles= StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
   },
+  
   incrementIconStyle: {
     fontSize: 25,
     color: "black",
