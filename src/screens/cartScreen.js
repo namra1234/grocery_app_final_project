@@ -76,12 +76,11 @@ const styles= StyleSheet.create({
   },
   smallbuttonStyle: {
     backgroundColor: "#1B7505",
-    width: 35,
+    width: 34,
     height: 35,
     borderRadius: 50,
     alignItems: "center",
   },
-  
   incrementIconStyle: {
     fontSize: 25,
     color: "black",
