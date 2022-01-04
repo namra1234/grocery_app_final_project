@@ -49,7 +49,7 @@ const HomeScreen = ({ navigation }) => {
           }}>
     <Text style={styles.logoStyle}>  Grocery Farm</Text>
     <View style={{flex:1, alignItems: 'flex-end',  justifyContent:'flex-end'}}>
-    <Feather name="shopping-cart" size={20} style={styles.Icon} />
+    <Feather name="shopping-cart" size={20} style={styles.Icon} onPress={()=>{navigation.navigate("Cart")}} />
     {constants.cartData.length >= 0 ? (
                   <View
                     style={{     
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         fontWeight: "bold",
         color: "#1B7505",
-        fontFamily: "MooLahLah-Regular",
+        
       },
   });
 export default HomeScreen;
