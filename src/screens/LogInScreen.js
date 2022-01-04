@@ -117,14 +117,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
     color: "#1B7505",
-    fontFamily: "MooLahLah-Regular",
+    
   },
   headingStyle: {    
     fontSize: 40,
     alignSelf: "center",
     fontWeight: "bold",
     color: "#1B7505",
-    fontFamily: "MooLahLah-Regular",
+    
     
   },
   loginFormContainerStyle: {

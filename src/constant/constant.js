@@ -44,5 +44,5 @@ export  const allProductData = [
     { id: "36",isInCart:false,isFavourite:"true", qty:"1", name: "Tomato",price: 2,weight:" 200 gm", image: `https://media.istockphoto.com/photos/cherry-tomatoes-isolated-on-white-background-picture-id1154803469?b=1&k=20&m=1154803469&s=170667a&w=0&h=OzPClwm6nKAGhWeYp3BMtmfePaaheAuR9dsoN8750No=` },
   ];
 
-export var cartData = [ 
+export const cartData = [ 
 ];

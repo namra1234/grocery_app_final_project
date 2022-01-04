@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         fontWeight: "bold",
         color: "#1B7505",
-        fontFamily: "MooLahLah-Regular",
+        
       },
   });
 export default WeeklyOffers;
