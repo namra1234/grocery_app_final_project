@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
     color: "#1B7505",
-    fontFamily: "MooLahLah-Regular",
+    
   },
   headingStyle: {    
     fontSize: 30,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
     color: "#1B7505",
-    fontFamily: "MooLahLah-Regular",
+    
     
   },
   smallheadingStyle: {    
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     fontWeight: "bold",
     color: "black",
-    fontFamily: "MooLahLah-Regular",
+    
     
   },
   loginFormContainerStyle: {
