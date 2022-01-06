@@ -22,7 +22,7 @@ const cartScreen=({navigation})=>{
           >
           <Feather name="arrow-left" size={20} style={styles.Icon} />
           </TouchableOpacity>
-          <Text style={styles.logoStyle}> Cart</Text>
+          <Text style={styles.logoStyle}>Cart</Text>
         </View>
        <View style={{flex:3}}>
          <View style={{flexDirection:"row", justifyContent:"space-between",margin:20}}>
@@ -45,7 +45,7 @@ const cartScreen=({navigation})=>{
       </View>
       <View style={{alignItems:"center", flex:1}}>
       <Text style={styles.totalStyle}>Total Cost: 30$</Text>
-      <TouchableOpacity onPress={()=>{}} >
+      <TouchableOpacity onPress={()=>{navigation.navigate("Checkout")}} >
         <View style={styles.checkoutStyle}>
         <Text style={{fontSize:20,color:"white"}}>Proceed to Checkout</Text>
         </View>
