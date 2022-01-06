@@ -68,7 +68,7 @@ const checkoutScreen=({navigation})=>{
                  </View>
              </TouchableOpacity>
              <TouchableOpacity
-             onPress={()=>{navigation.navigate("Timer")}}>
+             onPress={()=>{alert("Order Confirmed and Email confirmation sent successfully"), navigation.navigate("Timer")}}>
                  <View style={styles.payButtonStyle}>
                  <Text style={{color:"white",fontSize:18}}>Pay Now</Text>
                  </View>

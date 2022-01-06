@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet,TouchableOpacity, Animated} from "react-native";
+import {View, Text, StyleSheet,TouchableOpacity, Animated,Image} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
 import { Feather} from "@expo/vector-icons";
@@ -20,27 +20,37 @@ const timerScreen=({navigation})=>{
           >
           <Feather name="arrow-left" size={20} style={styles.Icon} />
           </TouchableOpacity>
-          <Text style={styles.logoStyle}>Timer</Text>
+          <Text style={styles.logoStyle}>Delivery</Text>
          </View>
          <View style={styles.mainViewStyle}>
-             <View>
+           <Text style={{fontSize:24,marginLeft:15}}>Delivery Person Details:</Text>
+           <View style={{flexDirection:"row",flex:2,justifyContent:"space-evenly",padding:20}}>
+              <View style={{backgroundColor:"red",flex:1}}>
+                <Image style={styles.imageStyle} source={require('../../assets/guypic.jpg')}/>
+              </View>
+              <View style={{flex:1,justifyContent:"center"}}>
+                <Text style={{fontSize:26,alignSelf:"center"}}>Mike</Text>
+                <Text style={{fontSize:26,alignSelf:"center"}}>514-498-9989</Text>
+              </View>
+           </View>
+             <View style={{flex:2,alignItems:"center",justifyContent:"center"}}>
                <CountdownCircleTimer
                isPlaying
-               duration={120}
+               duration={1800}
                colors={[
                 ['green', 0.4],
                 ['yellow', 0.4],
                 ['red', 0.3],
                ]}
-               size={300}
+               size={200}
                onComplete={()=>{}}
                >
                  {({ remainingTime, animatedColor }) => (
                    <Animated.Text style={{ color: animatedColor }}>
                      <View style={{padding:20,height:200,justifyContent:"center",alignItems:"center"}}>
-                      <Text style={{marginTop:10,marginLeft:5,fontSize:26}}> Remaining </Text>  
-                      <Text style={{marginTop:15,fontSize:26}}>{remainingTime}</Text> 
-                      <Text style={{marginTop:15,fontSize:26}}> Seconds</Text>
+                      <Text style={{marginTop:10,marginLeft:5,fontSize:24}}>Remaining</Text>  
+                      <Text style={{marginTop:15,fontSize:24}}>{remainingTime}</Text> 
+                      <Text style={{marginTop:15,fontSize:24}}>Seconds</Text>
                      </View>
                    </Animated.Text>
                   )}
@@ -48,13 +58,7 @@ const timerScreen=({navigation})=>{
              </View>
          </View>
          <View style={styles.secondViewStyle} >
-             <TouchableOpacity
-             onPress={()=>{navigation.navigate("Checkout")}}>
-                 <View style={styles.buttonViewStyle}>
-                     <Text style={styles.textStyle}>Cancel Order</Text>
-                 </View>
-
-             </TouchableOpacity>
+             <Text style={{fontSize:26,textAlign:"center"}}>We will deliver your order in above time limit</Text>
          </View>
         </SafeAreaView>
     )
@@ -73,27 +77,19 @@ const styles=StyleSheet.create({
         color: "#1B7505",
       },
       mainViewStyle:{
-        flex:4,
-        justifyContent:"center",
-        alignItems:"center",
+        flex:5,
+        flexDirection:"column",
       },
       secondViewStyle:{
         flex:1,
         alignItems:"center",
+        padding:20,
       },
-      buttonViewStyle:{
-          borderRadius:20,
-          backgroundColor:"green",
-          width:270,
-          height:45,
-          alignItems:"center",
-          justifyContent:"center",
-      },
-      textStyle:{
-        color:"white",
-        fontSize:24,
-        fontWeight:"bold",
+      imageStyle:{
+        width:"100%",
+        height:"100%",
       }
+      
 
 })
 
