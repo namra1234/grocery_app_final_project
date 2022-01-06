@@ -9,6 +9,8 @@ import WeeklyOffers from "./src/screens/WeeklyOffers"
 import AllProduct from "./src/screens/AllProduct"
 import DetailScreen from "./src/screens/detailScreen"
 import cartScreen from "./src/screens/cartScreen";
+import checkoutScreen from "./src/screens/checkoutScreen";
+import timerScreen from "./src/screens/timerScreen";
 
 const navigator = createStackNavigator(
   {
@@ -19,6 +21,8 @@ const navigator = createStackNavigator(
     WeeklyOffers:WeeklyOffers,
     FavouriteProduct:FavouriteProduct,
     AllProduct:AllProduct,
+    Timer : timerScreen,
+    Checkout: checkoutScreen,
     Cart : cartScreen,
     DetailScreen : DetailScreen
   },
