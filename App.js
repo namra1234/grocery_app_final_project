@@ -9,6 +9,10 @@ import WeeklyOffers from "./src/screens/WeeklyOffers"
 import AllProduct from "./src/screens/AllProduct"
 import DetailScreen from "./src/screens/detailScreen"
 import cartScreen from "./src/screens/cartScreen";
+import welcome from "./src/screens/admin/welcome";
+import manageRates from "./src/screens/admin/manageRates";
+import deliveryType from "./src/screens/admin/deliveryType";
+import modifyGroceryItems from "./src/screens/admin/modifyGroceryItems";
 
 const navigator = createStackNavigator(
   {
@@ -20,7 +24,11 @@ const navigator = createStackNavigator(
     FavouriteProduct:FavouriteProduct,
     AllProduct:AllProduct,
     Cart : cartScreen,
-    DetailScreen : DetailScreen
+    DetailScreen : DetailScreen,
+    welcome: welcome,
+    managerates: manageRates,
+    delivery:deliveryType, 
+    modify:modifyGroceryItems,
   },
   {
     initialRouteName: "LogInScreen",

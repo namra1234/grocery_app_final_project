@@ -1,4 +1,3 @@
-
 import {
   StyleSheet,
   ScrollView,
@@ -16,6 +15,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import React, { useState } from "react";
 
 const LogInScreen = ({ navigation }) => {
+  const[emailId, setEmailId]=useState('');
+  const[password, setPassword]=useState('');
 
   return (
 
@@ -26,10 +27,20 @@ const LogInScreen = ({ navigation }) => {
 
       <Image source={require("../../assets/bascket_girl.png")} style={styles.ImageStyle} />
       <Text style={styles.logoStyle}>Login</Text>
-      <TextInput style={styles.iStyle} placeholder="Email" />
-          <TextInput style={styles.iStyle} placeholder="Password" />
+      <TextInput style={styles.iStyle} placeholder="Email" 
+      autoCapitalize="none"
+      autoCorrect={false}
+      value={emailId}
+      onChangeText={newEmail => setEmailId(newEmail)}/>
+          
+      <TextInput style={styles.iStyle} placeholder="Password" 
+        autoCapitalize="none" 
+        autoCorrect={false} 
+        value={password}
+        onChangeText={newPassword => setPassword(newPassword)}/>
+        
           <TouchableOpacity style={styles.bStyle}
-          onPress={ () =>
+          onPress={ () => ((emailId == "admin") && (password == "admin"))? navigation.navigate("welcome") : 
             navigation.navigate("HomeScreen")
           }
           >
