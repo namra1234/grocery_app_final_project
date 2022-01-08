@@ -84,7 +84,7 @@ const HomeScreen = ({ navigation }) => {
         style={{ flex: 1 }}
         // onWordSubmit={() => searchApi(givenWord)}
       />
-      <ScrollView style={{ padding: 20 ,height:600}}>
+      <ScrollView style={{ padding: 20 ,height:"90%"}}>
         <ListOfResult          
           titleData="Weekly Offers"
           subtitleData="View All"

@@ -57,7 +57,7 @@ const ListOfALLResult = ({
           );
         }}
       />
-      {/* <Text> resultsData: {resultsData && resultsData.length} </Text> */}
+      <Text style={{marginBottom:60}}>  </Text>
     </View>
   );
 };

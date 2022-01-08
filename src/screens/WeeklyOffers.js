@@ -37,7 +37,7 @@ const WeeklyOffers = ({ navigation }) => {
         style={{ flex: 1 }}
         // onWordSubmit={() => searchApi(givenWord)}
       />
-      <ScrollView style={{ padding: 20 ,height:600}}>
+      <ScrollView style={{ padding: 20 ,height:"90%"}}>
         
         <ListOfALLResult  resultsData={constants.weeklyOfferData} titleData="Weekly Offers" />
       </ScrollView>

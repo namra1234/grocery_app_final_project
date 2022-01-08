@@ -42,7 +42,7 @@ const AllProduct = ({ navigation }) => {
         style={{ flex: 1 }}
         // onWordSubmit={() => searchApi(givenWord)}
       />
-          <ScrollView style={{ padding: 20 ,height:600}}>
+          <ScrollView style={{ padding: 20 ,height:"90%"}}>
 <View style={{flexDirection: "row",height:40,alignContent: "space-between",marginLeft:"5%",marginTop:0,width:500}}>
       
 
