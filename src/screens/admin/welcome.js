@@ -1,24 +1,52 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {Appbar, Title} from 'react-native-paper';
-import {Foundation} from '@expo/vector-icons';
-import {MaterialIcons} from '@expo/vector-icons';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import React,{useState} from 'react';
+import {View, Text, TouchableOpacity, ScrollView,StyleSheet,SafeAreaView} from 'react-native';
+import SearchComponent from "../../reuseable_components/SearchComponent";
+import * as constants from "../../constant/constant.js";
+import AdminListOfALLResult from "./AdminListOfALLResult";
 
-const welcome = ({navigation})=> {
-    return(
-
-    <View>
-        <Text style={{fontSize: 40, alignSelf: 'center', top: 150}}> Welcome ADMIN!</Text>
-
-        <Appbar style ={{position: 'absolute', top: 750, left: 0, right:0, height: 60,  backgroundColor: 'green', display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>
-            <Foundation name='dollar' style={{fontSize: 50, color: 'white', alignSelf: 'center'}} onPress={() => navigation.navigate("managerates")} Title={'managerates'}/>
-            <MaterialIcons name='food-bank' style={{fontSize: 50, color: 'white', alignSelf: 'center', left: 150}} onPress={() => navigation.navigate('modify')} />
-            <MaterialCommunityIcons name='truck-delivery-outline' style={{fontSize:50, color: 'white', alignSelf: 'center', left: 265}} onPress={() => {alert('Manage Rates')}}/>
-        </Appbar>
-        
-    </View>
+const welcome = ({ navigation }) => {
+    const [givenWord, setword] = useState("");
+    // const [searchApi, resData, errorInfo] = userResults();
+  
+    const FilterRes = (price) => {
+      return (
+        resData &&
+        resData.filter((obj) => {
+          return obj.price === price;
+        })
+      );
+    };
+  
+    return (
+      <SafeAreaView style={styles.conStyle}>
+      <View>
+      <Text style={styles.logoStyle}>Grocery Farm</Text>
+        <SearchComponent        
+          word={givenWord}
+          onWordChange={setword}
+          style={{ flex: 1 }}
+          // onWordSubmit={() => searchApi(givenWord)}
+        />
+        <ScrollView style={{ padding: 20 ,height:"90%"}}>
+          
+          <AdminListOfALLResult resultsData={constants.allProductData} titleData="Admin Pannel" />
+        </ScrollView>
+      </View></SafeAreaView>
     );
-};
-
-export default welcome;
+  };
+  
+  const styles = StyleSheet.create({
+      conStyle: {
+        backgroundColor: "white",
+        flex: 1,
+        paddingTop: 45,    
+      },
+      logoStyle: {    
+          fontSize: 40,
+          alignSelf: "center",
+          fontWeight: "bold",
+          color: "#1B7505",
+          
+        },
+    });
+  export default welcome;

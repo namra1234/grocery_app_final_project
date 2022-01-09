@@ -15,6 +15,7 @@ import welcome from "./src/screens/admin/welcome";
 import manageRates from "./src/screens/admin/manageRates";
 import deliveryType from "./src/screens/admin/deliveryType";
 import modifyGroceryItems from "./src/screens/admin/modifyGroceryItems";
+import adminDetailScreen from "./src/screens/admin/adminDetailScreen";
 
 const navigator = createStackNavigator(
   {
@@ -33,6 +34,7 @@ const navigator = createStackNavigator(
     managerates: manageRates,
     delivery:deliveryType,
     modify:modifyGroceryItems,
+    adminDetailScreen:adminDetailScreen
   },
   {
     initialRouteName: "LogInScreen",
