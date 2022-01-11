@@ -12,9 +12,6 @@ import cartScreen from "./src/screens/cartScreen";
 import checkoutScreen from "./src/screens/checkoutScreen";
 import timerScreen from "./src/screens/timerScreen";
 import welcome from "./src/screens/admin/welcome";
-import manageRates from "./src/screens/admin/manageRates";
-import deliveryType from "./src/screens/admin/deliveryType";
-import modifyGroceryItems from "./src/screens/admin/modifyGroceryItems";
 import adminDetailScreen from "./src/screens/admin/adminDetailScreen";
 
 const navigator = createStackNavigator(
@@ -31,9 +28,6 @@ const navigator = createStackNavigator(
     Cart : cartScreen,
     DetailScreen : DetailScreen,
     welcome: welcome,
-    managerates: manageRates,
-    delivery:deliveryType,
-    modify:modifyGroceryItems,
     adminDetailScreen:adminDetailScreen
   },
   {
