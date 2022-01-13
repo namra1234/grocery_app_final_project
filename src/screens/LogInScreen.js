@@ -9,14 +9,114 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
+// import { AsyncStorage } from '@react-native-async-storage/async-storage'
+import { AsyncStorage } from 'react-native';
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import {NavigationContainer} from '@react-navigation/native';
 import React, { useState } from "react";
+import * as constants from "../constant/constant.js";
 
 const LogInScreen = ({ navigation }) => {
   const[emailId, setEmailId]=useState('');
   const[password, setPassword]=useState('');
+
+  const storeData = async (data,val) => {
+    
+    try {
+      await AsyncStorage.setItem(val,
+        data
+        
+      );
+    } catch (error) {
+      // Error saving data
+      console.log(error);
+    }
+  };
+
+
+ 
+   const retrieveData = async (data) => {
+    try {
+      const value = await AsyncStorage.getItem(data);
+      console.log(data);
+
+      if(data=="weeklyOfferData")
+      {
+        if (value !== null) {
+
+          constants.weeklyOfferData=JSON.parse(value);
+          console.log("data available        "+constants.weeklyOfferData);
+        }
+        else
+        {      
+          console.log("data not available");    
+          let val=JSON.stringify(constants.weeklyOfferData);
+          storeData(val,'weeklyOfferData');
+        }
+      }
+      else if(data=="favouriteProductData")
+      {
+        if (value !== null) {
+          constants.favouriteProductData=JSON.parse(value);
+        }
+        else
+        {
+          let val=JSON.stringify(constants.favouriteProductData);
+          storeData(val,'favouriteProductData');
+        }
+      }
+      else if(data=="allProductData")
+      {
+        if (value !== null) {
+          constants.allProductData=JSON.parse(value);
+        }
+        else
+        {
+          let val=JSON.stringify(constants.allProductData);
+          storeData(val,'allProductData');
+        }
+      }
+      else if(data=="orderHistory")
+      {
+        if (value !== null) {
+          constants.orderHistory=JSON.parse(value);
+        }
+        else
+        {
+          let val=JSON.stringify(constants.orderHistory);
+          storeData(val,'orderHistory');
+        }
+      }
+      else if(data=="userData")
+      {
+        if (value !== null) {
+          constants.userData=JSON.parse(value);
+        }        
+      }
+      else if(data=="currentUserData")
+      {
+        if (value !== null) {
+          constants.currentUserData=JSON.parse(value);
+        }        
+      }
+     
+      
+    } catch (error) {
+      // Error retrieving data
+      console.log("retrive error");
+    }
+  };
+
+
+
+  retrieveData('weeklyOfferData');
+  retrieveData('favouriteProductData');
+  retrieveData('allProductData');
+  retrieveData('orderHistory');
+  retrieveData('userData');
+  retrieveData('currentUserData');
+
 
   return (
 

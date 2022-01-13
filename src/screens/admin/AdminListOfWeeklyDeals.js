@@ -19,19 +19,18 @@ const AdminListOfALLResult = ({
           justifyContent: "space-between",
         }}
       >
-        <Text style={styles.titleData}>{titleData}</Text>
-        
+        <Text style={styles.titleData}>{titleData}</Text>        
       </View>
       <FlatList
-        showsHorizontalScrollIndicator={false}
-        numColumns={2}
+        showsHorizontalScrollIndicator={true}
+        horizontal
         data={resultsData}
         keyExtractor={(resultsData) => resultsData.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
             onPress={() =>
-                navigation.navigate("adminDetailScreen", {productData: item , WeeklyDeal: false })
+                navigation.navigate("adminDetailScreen", {productData: item, WeeklyDeal: true })
               }
             >
               <View style={{ padding: 10, alignItems: "center", width: 180 }}>
@@ -47,7 +46,7 @@ const AdminListOfALLResult = ({
           );
         }}
       />
-      <Text style={{marginBottom:60}}>  </Text>
+      <Text style={{marginBottom:1}}>  </Text>
     </View>
   );
 };

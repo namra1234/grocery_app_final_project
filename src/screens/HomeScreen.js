@@ -19,19 +19,6 @@ import { NavigationEvents } from "react-navigation";
 const HomeScreen = ({ navigation }) => {
   const [givenWord, setword] = useState("");
   const [cartNumber, setcartNumber] = useState(constants.cartData.length);
-  // const [searchApi, resData, errorInfo] = userResults();
-
-
-
-
-  const FilterRes = (price) => {
-    return (
-      resData &&
-      resData.filter((obj) => {
-        return obj.price === price;
-      })
-    );
-  };
 
   return (
     
