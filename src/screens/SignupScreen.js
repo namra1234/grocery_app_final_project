@@ -10,10 +10,12 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
+import { AsyncStorage } from 'react-native';
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import {NavigationContainer} from '@react-navigation/native';
 import React, { useState } from "react";
+import * as constants from "../constant/constant.js";
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -21,6 +23,66 @@ const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [IsEmailAvailable, setIsEmailAvailable] = useState(false);
+
+
+  const storeData = async (data,val) => {
+    
+    try {
+      await AsyncStorage.setItem(        
+        val,data
+      );
+    } catch (error) {
+      // Error saving data
+      console.log(error);
+    }
+  };
+
+  const retrieveStoreData = async (data,userInfo) => {
+    
+
+    try {
+      const value = await AsyncStorage.getItem('userData');
+        if (value !== null) {
+          constants.userData=JSON.parse(value);          
+          for(let i = 0; i < constants.userData.length; i++){
+            if(constants.userData[i].email==userInfo.email)
+            {
+              setIsEmailAvailable(true);
+            }
+          }
+
+          if(!IsEmailAvailable)
+          {
+            alert("Email already exist.");
+            setIsEmailAvailable(false);
+          }
+          else
+          {
+            constants.userData=[];
+          constants.userData.push(userInfo);   
+          let val=JSON.stringify(constants.userData);  
+          storeData(val,'userData');
+          alert("Signup successfully !!!");
+          navigation.navigate("LogInScreen");
+          }
+        }
+        else
+        {      
+          constants.userData.push(userInfo);   
+          let val=JSON.stringify(constants.userData);  
+          storeData(val,'userData');
+          alert("Signup successfully !!!");
+          navigation.navigate("LogInScreen");
+        }          
+    } catch (error) {
+      console.log("retrive error");
+      
+    }
+
+  };
+
 
   return (
 
@@ -74,6 +136,16 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={(newValue) => setEmail(newValue)}
       />
 
+      <Text style={styles.smallheadingStyle}>Password</Text>
+      <TextInput
+        style={styles.iStyle}
+        autoCapitalize="none"
+        autoCorrect={false}
+        value={password}
+        placeholder="password"
+        onChangeText={(newValue) => setPassword(newValue)}
+      />
+
       <Text style={styles.smallheadingStyle}>Phone Number</Text>
       <TextInput
         style={styles.iStyle}
@@ -94,7 +166,32 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={(newValue) => setAddress(newValue)}
       />
          
-          <TouchableOpacity style={styles.bStyle}>
+          <TouchableOpacity style={styles.bStyle}
+          onPress={()=>{
+            
+            var id = Math.floor(Math.random() * 1000) + 1 ;
+
+            var userInfo = {
+              'id' : id,
+              'name' : name,
+              'Lastname' : Lastname,
+              'email' : email,
+              'password':password,
+              'PhoneNumber' : PhoneNumber,
+              'address' : address
+            };
+
+            retrieveStoreData('userData',userInfo);
+
+            if(IsEmailAvailable)
+            {
+              console.log("Hello");
+            }
+            
+            
+            
+          }}
+          >
             <Text style={styles.bTStyle}>Register</Text>
           </TouchableOpacity>          
           <Text
