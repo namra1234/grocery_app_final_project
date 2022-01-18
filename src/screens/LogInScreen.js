@@ -15,8 +15,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
-import * as constants from "../constant/constant.js";
-const [athenticate, setAthenticataion] = useState(false);
+import * as constants from "../constant/constant.js"
 
 const LogInScreen = ({ navigation }) => {
   const [emailId, setEmailId] = useState("");
@@ -123,6 +122,7 @@ const LogInScreen = ({ navigation }) => {
               if (emailId == "admin" && password == "admin")
                 navigation.navigate("welcome");
               else {
+                var temp=false;
                 for (let i = 0; i < constants.userData.length; i++) {
                   console.log(constants.userData[i].email);
                   console.log(constants.userData[i].password);
@@ -130,12 +130,11 @@ const LogInScreen = ({ navigation }) => {
                     constants.userData[i].email == emailId &&
                     constants.userData[i].password == password
                   ) {
-                    setAthenticataion(true);
+                    temp=true;
                   }
                 }
 
-                if (athenticataion) {
-                  setAthenticataion(false);
+                if (temp) {                  
                   navigation.navigate("HomeScreen");
                 } else {
                   alert("Incorrect Username or Password");
