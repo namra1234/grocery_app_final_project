@@ -122,23 +122,23 @@ const LogInScreen = ({ navigation }) => {
               if (emailId == "admin" && password == "admin")
                 navigation.navigate("welcome");
               else {
-                var temp=false;
-                for (let i = 0; i < constants.userData.length; i++) {
-                  console.log(constants.userData[i].email);
-                  console.log(constants.userData[i].password);
-                  if (
-                    constants.userData[i].email == emailId &&
-                    constants.userData[i].password == password
-                  ) {
-                    temp=true;
-                  }
-                }
+                // var temp=false;
+                // for (let i = 0; i < constants.userData.length; i++) {
+                //   console.log(constants.userData[i].email);
+                //   console.log(constants.userData[i].password);
+                //   if (
+                //     constants.userData[i].email == emailId &&
+                //     constants.userData[i].password == password
+                //   ) {
+                //     temp=true;
+                //   }
+                // }
 
-                if (temp) {                  
+                // if (temp) {                  
                   navigation.navigate("HomeScreen");
-                } else {
-                  alert("Incorrect Username or Password");
-                }
+                // } else {
+                //   alert("Incorrect Username or Password");
+                // }
               }
             }}
           >

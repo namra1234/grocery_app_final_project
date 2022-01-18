@@ -18,14 +18,24 @@ const FavouriteProduct = ({ navigation }) => {
   const [givenWord, setword] = useState("");
   // const [searchApi, resData, errorInfo] = userResults();
 
-  const FilterRes = (price) => {
-    return (
-      resData &&
-      resData.filter((obj) => {
-        return obj.price === price;
-      })
-    );
+  const [FavouriteDataCurrData, setFavouriteData] = useState(constants.favouriteProductData);
+  
+
+  const FilterRes = (givenWord) => {
+
+    const filterData1 = [];
+    for(let i = 0; i < constants.favouriteProductData.length; i++)
+    {
+      if(constants.favouriteProductData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
+      {
+        filterData1.push(constants.favouriteProductData[i]);
+      }
+    }    
+    setFavouriteData(filterData1);
+
+
   };
+
 
   return (
     <SafeAreaView style={styles.conStyle}>
@@ -35,11 +45,11 @@ const FavouriteProduct = ({ navigation }) => {
         word={givenWord}
         onWordChange={setword}
         style={{ flex: 1 }}
-        // onWordSubmit={() => searchApi(givenWord)}
+        onWordSubmit={() => FilterRes(givenWord)}
       />
       <ScrollView style={{ padding: 20 ,height:"90%"}}>
         
-        <ListOfALLResult resultsData={constants.favouriteProductData} titleData="Favourite Products" />
+        <ListOfALLResult resultsData={FavouriteDataCurrData} titleData="Favourite Products" />
       </ScrollView>
     </View></SafeAreaView>
   );

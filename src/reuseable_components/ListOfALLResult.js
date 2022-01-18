@@ -11,7 +11,29 @@ const ListOfALLResult = ({
   subtitleData
 }) => {
   if (!resultsData.length) {
-    return null;
+    return (
+      <View style={{ padding: 40, alignItems: "center", height:100 }}>
+      <View style={{
+        flexDirection:"row",
+        justifyContent:"space-between"
+      }}>
+      <Text style={styles.titleData}>{titleData}</Text>
+      <TouchableOpacity
+                onPress={()=> {
+                  console.log("Hello");
+                  navigation.navigate(`${subtitleOnpress}`);
+                }
+                }
+              >
+  
+  <Text style={styles.subtitleData}>{subtitleData}</Text>
+              </TouchableOpacity>
+      
+      </View>      
+      <View><Text>No data found</Text></View>
+        {/* <Text> resultsData: {resultsData && resultsData.length} </Text> */}
+      </View>
+    );
   }
 
   return (

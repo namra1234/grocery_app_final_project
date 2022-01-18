@@ -1,6 +1,6 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet ,TouchableOpacity} from "react-native";
 
 const SearchComponent = ({ word, onWordChange, onWordSubmit }) => {
   return (
@@ -16,6 +16,7 @@ const SearchComponent = ({ word, onWordChange, onWordSubmit }) => {
         // onChangeText={newword => onWordChange(newword)}
         onChangeText={onWordChange}
       />
+      
     </View>
   );
 };

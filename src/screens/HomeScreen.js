@@ -20,6 +20,48 @@ const HomeScreen = ({ navigation }) => {
   const [givenWord, setword] = useState("");
   const [cartNumber, setcartNumber] = useState(constants.cartData.length);
 
+
+  const [allProductDataCurrData, setAllData] = useState(constants.allProductData);
+  const [FavouriteDataCurrData, setFavouriteData] = useState(constants.favouriteProductData);
+  const [WeeklyOfferCurrData, setWeeklyOfferData] = useState(constants.weeklyOfferData);
+  
+
+  const FilterRes = (givenWord) => {
+
+    const filterData = [];
+    for(let i = 0; i < constants.allProductData.length; i++)
+    {
+      if(constants.allProductData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
+      {
+        filterData.push(constants.allProductData[i]);
+      }
+    }    
+    setAllData(filterData);
+
+
+    const filterData1 = [];
+    for(let i = 0; i < constants.favouriteProductData.length; i++)
+    {
+      if(constants.favouriteProductData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
+      {
+        filterData1.push(constants.favouriteProductData[i]);
+      }
+    }    
+    setFavouriteData(filterData1);
+
+
+    const filterData2 = [];
+    for(let i = 0; i < constants.weeklyOfferData.length; i++)
+    {
+      if(constants.weeklyOfferData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
+      {
+        filterData2.push(constants.weeklyOfferData[i]);
+      }
+    }    
+    setWeeklyOfferData(filterData2);
+  };
+
+
   return (
     
     <SafeAreaView style={styles.conStyle}>
@@ -69,22 +111,22 @@ const HomeScreen = ({ navigation }) => {
         word={givenWord}
         onWordChange={setword}
         style={{ flex: 1 }}
-        // onWordSubmit={() => searchApi(givenWord)}
+        onWordSubmit={() => FilterRes(givenWord)}
       />
       <ScrollView style={{ padding: 20 ,height:"90%"}}>
         <ListOfResult          
           titleData="Weekly Offers"
           subtitleData="View All"
-          resultsData={constants.weeklyOfferData}
+          resultsData={WeeklyOfferCurrData}
           subtitleOnpress="WeeklyOffers"          
         />
         <ListOfResult
-          resultsData={constants.favouriteProductData}
+          resultsData={FavouriteDataCurrData}
           subtitleData="View All"
           titleData="Favourite Products"
           subtitleOnpress="FavouriteProduct"
         /> 
-        <ListOfALLResult resultsData={constants.allProductData} titleData="All Product" subtitleOnpress="AllProduct"
+        <ListOfALLResult resultsData={allProductDataCurrData} titleData="All Product" subtitleOnpress="AllProduct"
           subtitleData="View All"
         />
       </ScrollView>
