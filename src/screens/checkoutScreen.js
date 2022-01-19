@@ -3,10 +3,23 @@ import {View,Text,StyleSheet,TouchableOpacity, TextInput} from "react-native";
 import { Feather} from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
-
+import * as constants from "../constant/constant.js";
+import { AsyncStorage } from 'react-native';
 
 const checkoutScreen=({navigation})=>{
   
+  const storeData = async (data,val) => {
+    
+    try {
+      await AsyncStorage.setItem(        
+        val,data
+      );
+    } catch (error) {
+      // Error saving data
+      console.log(error);
+    }
+  };
+
     return(
      <SafeAreaView style={{flex:1, backgroundColor:"white"}}>
          <View
@@ -68,7 +81,24 @@ const checkoutScreen=({navigation})=>{
                  </View>
              </TouchableOpacity>
              <TouchableOpacity
-             onPress={()=>{alert("Order Confirmed and Email confirmation sent successfully"), navigation.navigate("Timer")}}>
+             onPress={()=>{
+               alert("Order Confirmed and Email confirmation sent successfully"); 
+
+
+                var orderData= {
+                'userData' : constants.currentUserData,
+                'orderStatus' : 'On the way',
+                'OrderList' : constants.cartData,
+                'totalPrice' : '100'
+                };
+
+               constants.orderHistory.push(orderData);
+               let val=JSON.stringify(constants.orderHistory); 
+               storeData(val,'orderHistory');
+               constants.cartData=[];               
+               navigation.navigate("Timer");
+               
+               }}>
                  <View style={styles.payButtonStyle}>
                  <Text style={{color:"white",fontSize:18}}>Pay Now</Text>
                  </View>

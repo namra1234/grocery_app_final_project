@@ -169,7 +169,7 @@ const SignupScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.bStyle}
           onPress={()=>{
             
-            var id = Math.floor(Math.random() * 1000) + 1 ;
+            var id = Math.floor(Math.random() * 10000) + 1 ;
 
             var userInfo = {
               'id' : id,

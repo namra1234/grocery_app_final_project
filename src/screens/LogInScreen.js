@@ -33,7 +33,6 @@ const LogInScreen = ({ navigation }) => {
   const retrieveData = async (data) => {
     try {
       const value = await AsyncStorage.getItem(data);
-      console.log(data);
 
       if (data == "weeklyOfferData") {
         if (value !== null) {
@@ -61,6 +60,7 @@ const LogInScreen = ({ navigation }) => {
       } else if (data == "orderHistory") {
         if (value !== null) {
           constants.orderHistory = JSON.parse(value);
+          console.log(constants.orderHistory);
         } else {
           let val = JSON.stringify(constants.orderHistory);
           storeData(val, "orderHistory");
@@ -122,23 +122,25 @@ const LogInScreen = ({ navigation }) => {
               if (emailId == "admin" && password == "admin")
                 navigation.navigate("welcome");
               else {
-                // var temp=false;
-                // for (let i = 0; i < constants.userData.length; i++) {
-                //   console.log(constants.userData[i].email);
-                //   console.log(constants.userData[i].password);
-                //   if (
-                //     constants.userData[i].email == emailId &&
-                //     constants.userData[i].password == password
-                //   ) {
-                //     temp=true;
-                //   }
-                // }
+                var temp=false;
+                for (let i = 0; i < constants.userData.length; i++) {
+                  console.log(constants.userData[i].email);
+                  console.log(constants.userData[i].password);
+                  if (
+                    constants.userData[i].email == emailId &&
+                    constants.userData[i].password == password
+                  ) {
+                    temp=true;
+                    constants.currentUserData=[];
+                    constants.currentUserData.push(constants.userData[i]);
+                  }
+                }
 
-                // if (temp) {                  
+                if (temp) {                  
                   navigation.navigate("HomeScreen");
-                // } else {
-                //   alert("Incorrect Username or Password");
-                // }
+                } else {
+                  alert("Incorrect Username or Password");
+                }
               }
             }}
           >
