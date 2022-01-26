@@ -13,6 +13,8 @@ import { withNavigation } from "react-navigation";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import * as constants from "../../constant/constant";
 import { RadioButton } from 'react-native-paper';
+import {Ionicons} from '@expo/vector-icons';
+import {Menu, MenuOptions, MenuOption, MenuTrigger, MenuContext} from 'react-native-popup-menu';
 
 const adminDetailScreen = ({ navigation }) => {
   const productData = navigation.getParam("productData");
