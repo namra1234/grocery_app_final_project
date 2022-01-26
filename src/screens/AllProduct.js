@@ -22,14 +22,21 @@ const AllProduct = ({ navigation }) => {
   const [salad, setsalad] = useState(false);
   const [shortLH, setshortLH] = useState(false);
   const [shortHL, setshortHL] = useState(false);
+  const [allProductDataCurrData, setData] = useState(constants.allProductData);
+  
 
-  const FilterRes = (price) => {
-    return (
-      resData &&
-      resData.filter((obj) => {
-        return obj.price === price;
-      })
-    );
+  const FilterRes = (givenWord) => {
+
+    const filterData = [];
+    for(let i = 0; i < constants.allProductData.length; i++)
+    {
+      if(constants.allProductData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
+      {
+        filterData.push(constants.allProductData[i]);
+      }
+    }
+    
+    setData(filterData);
   };
 
   return (
@@ -38,9 +45,11 @@ const AllProduct = ({ navigation }) => {
     <Text style={styles.logoStyle}>Grocery Farm</Text>
       <SearchComponent        
         word={givenWord}
-        onWordChange={setword}
+        onWordChange={
+          setword          
+        }
         style={{ flex: 1 }}
-        // onWordSubmit={() => searchApi(givenWord)}
+        onWordSubmit={() => FilterRes(givenWord)}
       />
           <ScrollView style={{ padding: 20 ,height:"90%"}}>
 <View style={{flexDirection: "row",height:40,alignContent: "space-between",marginLeft:"5%",marginTop:0,width:500}}>
@@ -134,7 +143,7 @@ const AllProduct = ({ navigation }) => {
       </View>
       
         
-        <ListOfALLResult resultsData={constants.allProductData} titleData="All Product" />
+        <ListOfALLResult resultsData={allProductDataCurrData} titleData="All Product" />
       </ScrollView>
     </View></SafeAreaView>
   );

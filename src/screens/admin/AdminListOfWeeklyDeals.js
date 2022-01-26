@@ -3,39 +3,14 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { withNavigation } from "react-navigation";
 
-const ListOfALLResult = ({
+const AdminListOfALLResult = ({
   titleData,
   resultsData,
   navigation,
   subtitleOnpress,
   subtitleData
 }) => {
-  if (!resultsData.length) {
-    return (
-      <View style={{ padding: 40, alignItems: "center", height:100 }}>
-      <View style={{
-        flexDirection:"row",
-        justifyContent:"space-between"
-      }}>
-      <Text style={styles.titleData}>{titleData}</Text>
-      <TouchableOpacity
-                onPress={()=> {
-                  console.log("Hello");
-                  navigation.navigate(`${subtitleOnpress}`);
-                }
-                }
-              >
-  
-  <Text style={styles.subtitleData}>{subtitleData}</Text>
-              </TouchableOpacity>
-      
-      </View>      
-      <View><Text>No data found</Text></View>
-        {/* <Text> resultsData: {resultsData && resultsData.length} </Text> */}
-      </View>
-    );
-  }
-
+ 
   return (
     <View>
       <View
@@ -44,26 +19,18 @@ const ListOfALLResult = ({
           justifyContent: "space-between",
         }}
       >
-        <Text style={styles.titleData}>{titleData}</Text>
-        <TouchableOpacity
-          onPress={() => {
-            console.log("Hello");
-            navigation.navigate(`${subtitleOnpress}`);
-          }}
-        >
-          <Text style={styles.subtitleData}>{subtitleData}</Text>
-        </TouchableOpacity>
+        <Text style={styles.titleData}>{titleData}</Text>        
       </View>
       <FlatList
-        showsHorizontalScrollIndicator={false}
-        numColumns={2}
+        showsHorizontalScrollIndicator={true}
+        horizontal
         data={resultsData}
         keyExtractor={(resultsData) => resultsData.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
             onPress={() =>
-                navigation.navigate("DetailScreen", {productData: item })
+                navigation.navigate("adminDetailScreen", {productData: item, WeeklyDeal: true })
               }
             >
               <View style={{ padding: 10, alignItems: "center", width: 180 }}>
@@ -79,7 +46,7 @@ const ListOfALLResult = ({
           );
         }}
       />
-      <Text style={{marginBottom:60}}>  </Text>
+      <Text style={{marginBottom:1}}>  </Text>
     </View>
   );
 };
@@ -93,7 +60,7 @@ const styles = StyleSheet.create({
   subtitleData: {
     fontSize: 18,
     fontWeight: "bold",
-    color:"#1B7505",
+    color:"#753B05",
     alignSelf:"flex-end",
     marginRight:20,
     marginLeft:130
@@ -105,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(ListOfALLResult);
+export default withNavigation(AdminListOfALLResult);

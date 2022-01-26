@@ -46,3 +46,13 @@ export  const allProductData = [
 
 export const cartData = [ 
 ];
+export const orderHistory = [ 
+];
+
+export const userData = [
+
+];
+
+export const currentUserData = [
+  
+];
