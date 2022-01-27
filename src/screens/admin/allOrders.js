@@ -1,7 +1,12 @@
 import React from 'react';
-import {View, Text, Image, FlatList} from 'react-native';
+import { Image, FlatList,View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,styles,
+  SafeAreaView,} from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import {MaterialIcons} from '@expo/vector-icons';
+import * as constants from "../../constant/constant.js";
 
 const allOrders = ({navigation})=> {
     const value1 = 'Order No';
@@ -23,25 +28,6 @@ const allOrders = ({navigation})=> {
         keyExtractor={(resultsData) => resultsData.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity
-            onPress={() =>
-                navigation.navigate("adminDetailScreen", {productData: item })
-              }
-            >
-              <View style={{ padding: 10, alignItems: "center", width: 180 }}>
-                <Image
-                  style={styles.imagesStyle}
-                  source={{ uri: item.image }}
-                />
-                <Text>{item.name}</Text>
-                <Text>$ {item.price}</Text>
-                <Text>{item.weight}</Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
-
             <View style={{borderColor: 'black', width: 320, height: 200, margin: 60, marginLeft: 40, borderWidth: 2, borderRadius: 10}}>
             <View style ={{ justifyContent: 'flex-start', marginTop:10, marginLeft: 8, flexDirection: 'column', justifyContent:'space-between'}} >
             <Text style = {{fontSize: 20}}>{value1}</Text>
@@ -60,6 +46,11 @@ const allOrders = ({navigation})=> {
 
             </View>
             </View>
+          );
+        }}
+      />
+
+           
 
 
 </ScrollView>
