@@ -46,8 +46,8 @@ const allOrders = ({navigation})=> {
             <View style={{borderColor: 'black', width: '80%', height: 200, marginTop: 20, marginLeft: 40, borderWidth: 2, borderRadius: 10}}>
             <View style ={{ justifyContent: 'flex-start', marginTop:10, marginLeft: 8, flexDirection: 'column', justifyContent:'space-between'}} >
             <Text style = {{fontSize: 20}}>{value2} - {item.orderId}</Text>
-            {/* <Text style = {{fontSize: 20}}>Customer Name - {item.userData[0].name} </Text> */}
-            {/* <Text style = {{fontSize: 20}}>Phone No. - {item.userData[0].PhoneNumber} </Text> */}
+            <Text style = {{fontSize: 20}}>Customer Name - {item.userData[0].name} </Text>
+            <Text style = {{fontSize: 20}}>Phone No. - {item.userData[0].PhoneNumber} </Text>
             <Text style = {{fontSize: 20}}>{value3}  -  {item.orderStatus}</Text>
             <Text style = {{fontSize: 20}}>Total Item -  {item.OrderList.length} </Text>
             <Text style = {{fontSize: 20}}>{value5} -  $ {item.totalPrice}</Text>
