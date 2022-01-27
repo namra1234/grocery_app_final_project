@@ -13,6 +13,7 @@ import checkoutScreen from "./src/screens/checkoutScreen";
 import timerScreen from "./src/screens/timerScreen";
 import welcome from "./src/screens/admin/welcome";
 import adminDetailScreen from "./src/screens/admin/adminDetailScreen";
+import allOrders from "./src/screens/admin/allOrders";
 
 const navigator = createStackNavigator(
   {
@@ -28,10 +29,11 @@ const navigator = createStackNavigator(
     Cart : cartScreen,
     DetailScreen : DetailScreen,
     welcome: welcome,
-    adminDetailScreen:adminDetailScreen
+    adminDetailScreen:adminDetailScreen,
+    allOrders: allOrders,
   },
   {
-    initialRouteName: "LogInScreen",
+    initialRouteName: "welcome",
     defaultNavigationOptions: {
       // title: "Grocery Farm",
       headerShown:false,
