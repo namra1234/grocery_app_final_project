@@ -6,7 +6,9 @@ import {
   ScrollView,
   View,
   Text,
-  SafeAreaView  
+  SafeAreaView,
+  Image,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import SearchComponent from "../reuseable_components/SearchComponent";
@@ -45,8 +47,13 @@ const HomeScreen = ({ navigation }) => {
     <View>
     <View style={{
             flexDirection: "row",
-           justifyContent:"space-between"            
+           justifyContent:"space-between",         
           }}>
+    <View style={{flex:1,justifyContent:"flex-start",width:50,height:50}}>
+      <TouchableOpacity   onPress={()=>{navigation.navigate("Profile")}}>
+      <Image style={styles.imageStyle} source={require('../../assets/guypic.jpg')}/>
+      </TouchableOpacity>
+    </View>
     <Text style={styles.logoStyle}>  Grocery Farm</Text>
     <View style={{flex:1, alignItems: 'flex-end',  justifyContent:'flex-end'}}>
     <Feather name="shopping-cart" size={20} style={styles.Icon} onPress={()=>{navigation.navigate("Cart")}} />
@@ -113,18 +120,24 @@ const styles = StyleSheet.create({
     },
     Icon: {
       marginRight: 30,
-      // marginBottom:5,
-     
+      // marginBottom:5, 
       fontSize: 34,
       alignSelf:"flex-end"
     },
     logoStyle: {    
         fontSize: 38,
-        // marginRight:30,
-        alignSelf: "flex-start",
+        //marginRight:30,
+        alignSelf: "center",
         fontWeight: "bold",
         color: "#1B7505",
-        
+       // backgroundColor:"yellow",
       },
+    imageStyle:{
+       width:50,
+       height:"100%",
+       borderRadius:50,
+       alignSelf:"center",
+       marginLeft:20,
+    },
   });
 export default HomeScreen;
