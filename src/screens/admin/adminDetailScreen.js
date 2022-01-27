@@ -8,18 +8,30 @@ import {
   SafeAreaView,
   TextInput,ScrollView
 } from "react-native";
+import { AsyncStorage } from 'react-native';
 import { FlatList } from "react-native-gesture-handler";
 import { withNavigation } from "react-navigation";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import * as constants from "../../constant/constant";
 import { RadioButton } from 'react-native-paper';
+import LogInScreen from "../LogInScreen";
 
 const adminDetailScreen = ({ navigation }) => {
   const productData = navigation.getParam("productData");
-  const [isFavourite, setisFavourite] = useState(productData.isFavourite);
-  const [isInCart, setisInCart] = useState(productData.isInCart);
-  const [count, setCount] = useState(Math.round(productData.qty));
+  const WeeklyDeal = navigation.getParam("WeeklyDeal");
   const [checked, setChecked] = React.useState('first');
+  const [price, setPrice] = React.useState(''+productData.price);
+  const storeData = async (data,val) => {
+    
+    try {
+      await AsyncStorage.setItem(        
+        val,data
+      );
+    } catch (error) {
+      // Error saving data
+      console.log(error);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.conStyle}>
@@ -107,36 +119,13 @@ const adminDetailScreen = ({ navigation }) => {
             <Text style={styles.incrementIconStyle}>$</Text>
             <TextInput autoCorrect={false}
         autoCapitalize='none'
-        style={{fontSize: 15,marginLeft: 10,marginBottom:10, borderColor: 'black', borderWidth:1, width: 100, height: 50, borderRadius: 10}}>    {productData.price} </TextInput>
+        keyboardType = 'numeric'
+        value={price}
+      onChangeText={price => setPrice(price)}
+
+        style={{fontSize: 15,marginLeft: 10,marginBottom:10, borderColor: 'black', borderWidth:1, width: 100, height: 50, borderRadius: 10}} />
        </View>
-       <View>
-          <View
-          style={{
-            flexDirection: "row",
-          }}
-        >
-          <RadioButton
-        value="first"
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
-      /><Text
-      style={{paddingTop:5}}
-      >Delivery</Text>
-      </View>
-      <View
-          style={{
-            flexDirection: "row",marginBottom:20,
-          }}
-        >
-      <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-      /><Text
-      style={{paddingTop:5}}
-      >Pick up</Text>
-         </View>
-         </View>
+       
           </View>
 
           
@@ -144,7 +133,17 @@ const adminDetailScreen = ({ navigation }) => {
       
         <TouchableOpacity style={styles.buttonStyle}
                 onPress={() => {
-                                    
+                  if(WeeklyDeal)
+                            {
+                              var P_original=parseFloat(price);
+                            productData.price=P_original;
+                            storeData(JSON.stringify(constants.weeklyOfferData),'weeklyOfferData');
+                            }
+                            else{
+                              var P_original=parseFloat(price);
+                            productData.price=P_original;
+                            storeData(JSON.stringify(constants.allProductData),'allProductData');
+                            }          
                 }}
               >
                 
@@ -154,7 +153,18 @@ const adminDetailScreen = ({ navigation }) => {
       
       <TouchableOpacity style={styles.buttonStyle}
                 onPress={() => {
-                                    
+
+                            if(WeeklyDeal)
+                            {
+                            constants.weeklyOfferData=constants.weeklyOfferData.filter(item => item !== productData);
+                            storeData(constants.weeklyOfferData,'weeklyOfferData');
+                            }
+                            else{
+                            constants.allProductData=constants.allProductData.filter(item => item !== productData);
+                            storeData(constants.allProductData,'allProductData');
+                            }
+                            
+                            navigation.pop();
                 }}
               >
                 
@@ -175,7 +185,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   smallbuttonStyle: {
-    backgroundColor: "#1B7505",
+    backgroundColor: "#753B05",
     width: 35,
     height: 35,
     borderRadius: 50,
@@ -183,7 +193,7 @@ const styles = StyleSheet.create({
     // marginHorizontal: 5,
   },
   buttonStyle: {
-    backgroundColor: "#1B7505",
+    backgroundColor: "#753B05",
     width: "80%" ,
     height: 50,
     borderRadius: 10,
@@ -218,7 +228,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     alignSelf: "center",
     fontWeight: "bold",
-    color: "#1B7505",
+    color: "#753B05",
     
   },
   titleData: {
@@ -229,7 +239,7 @@ const styles = StyleSheet.create({
   subtitleData: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#1B7505",
+    color: "#753B05",
     alignSelf: "flex-end",
     marginRight: 20,
     marginLeft: 130,
@@ -245,7 +255,7 @@ const styles = StyleSheet.create({
   smallheadingStyle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#1B7505",
+    color: "#753B05",
     alignSelf: "center",
   },
   smallheadingStyle1: {

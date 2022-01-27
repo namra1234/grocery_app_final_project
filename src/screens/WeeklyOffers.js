@@ -18,13 +18,20 @@ const WeeklyOffers = ({ navigation }) => {
   const [givenWord, setword] = useState("");
   // const [searchApi, resData, errorInfo] = userResults();
 
-  const FilterRes = (price) => {
-    return (
-      resData &&
-      resData.filter((obj) => {
-        return obj.price === price;
-      })
-    );
+ 
+  const [WeeklyOfferCurrData, setWeeklyOfferData] = useState(constants.weeklyOfferData);
+  
+
+  const FilterRes = (givenWord) => {
+    const filterData2 = [];
+    for(let i = 0; i < constants.weeklyOfferData.length; i++)
+    {
+      if(constants.weeklyOfferData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
+      {
+        filterData2.push(constants.weeklyOfferData[i]);
+      }
+    }    
+    setWeeklyOfferData(filterData2);
   };
 
   return (
@@ -35,11 +42,11 @@ const WeeklyOffers = ({ navigation }) => {
         word={givenWord}
         onWordChange={setword}
         style={{ flex: 1 }}
-        // onWordSubmit={() => searchApi(givenWord)}
+        onWordSubmit={() => FilterRes(givenWord)}
       />
       <ScrollView style={{ padding: 20 ,height:"90%"}}>
         
-        <ListOfALLResult  resultsData={constants.weeklyOfferData} titleData="Weekly Offers" />
+        <ListOfALLResult  resultsData={WeeklyOfferCurrData} titleData="Weekly Offers" />
       </ScrollView>
     </View></SafeAreaView>
   );

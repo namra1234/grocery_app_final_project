@@ -10,10 +10,7 @@ const AdminListOfALLResult = ({
   subtitleOnpress,
   subtitleData
 }) => {
-  if (!resultsData.length) {
-    return null;
-  }
-
+ 
   return (
     <View>
       <View
@@ -23,14 +20,7 @@ const AdminListOfALLResult = ({
         }}
       >
         <Text style={styles.titleData}>{titleData}</Text>
-        <TouchableOpacity
-          onPress={() => {
-            console.log("Hello");
-            navigation.navigate(`${subtitleOnpress}`);
-          }}
-        >
-          <Text style={styles.subtitleData}>{subtitleData}</Text>
-        </TouchableOpacity>
+        
       </View>
       <FlatList
         showsHorizontalScrollIndicator={false}
@@ -41,7 +31,7 @@ const AdminListOfALLResult = ({
           return (
             <TouchableOpacity
             onPress={() =>
-                navigation.navigate("adminDetailScreen", {productData: item })
+                navigation.navigate("adminDetailScreen", {productData: item , WeeklyDeal: false })
               }
             >
               <View style={{ padding: 10, alignItems: "center", width: 180 }}>
@@ -71,7 +61,7 @@ const styles = StyleSheet.create({
   subtitleData: {
     fontSize: 18,
     fontWeight: "bold",
-    color:"#1B7505",
+    color:"#753B05",
     alignSelf:"flex-end",
     marginRight:20,
     marginLeft:130
