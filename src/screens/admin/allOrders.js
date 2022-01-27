@@ -2,62 +2,89 @@ import React from 'react';
 import { Image, FlatList,View,
   Text,
   TouchableOpacity,
-  StyleSheet,styles,
+  StyleSheet,
   SafeAreaView,} from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import {MaterialIcons} from '@expo/vector-icons';
 import * as constants from "../../constant/constant.js";
+import { Feather, AntDesign } from "@expo/vector-icons";
 
 const allOrders = ({navigation})=> {
     const value1 = 'Order No';
     const value2 = 'Order Id';
-    const value3 = 'Date of Delivery';
-    const value4 = 'Time of Delivery';
+    const value3 = 'Order Status';
     const value5 = 'Total Bill';
 
-    resultsData =  constants.allProductData;
-        return(
-            <ScrollView>
-            <MaterialIcons name='arrow-back-ios' onPress={()=>navigation.navigate('welcome')} style={{}}/>
+    resultsData =  constants.orderHistory;
+        return(<SafeAreaView style={styles.conStyle}>
+          <View>
             
-            
+            <View
+          style={{
+            flexDirection: "row",
+          }}
+        >
+        <TouchableOpacity
+            onPress={() => {
+              navigation.pop();
+            }}
+          >
+          <Feather name="arrow-left" size={20} style={styles.Icon} />
+          </TouchableOpacity>
+          <Text style={styles.logoStyle}> Order List</Text>
+        </View>
+             
             <FlatList
         showsHorizontalScrollIndicator={false}
-        numColumns={2}
+        numColumns={1}
         data={resultsData}
         keyExtractor={(resultsData) => resultsData.id}
         renderItem={({ item }) => {
+          console.log(item);
           return (
-            <View style={{borderColor: 'black', width: 320, height: 200, margin: 60, marginLeft: 40, borderWidth: 2, borderRadius: 10}}>
+
+            <View style={{borderColor: 'black', width: '80%', height: 200, marginTop: 20, marginLeft: 40, borderWidth: 2, borderRadius: 10}}>
             <View style ={{ justifyContent: 'flex-start', marginTop:10, marginLeft: 8, flexDirection: 'column', justifyContent:'space-between'}} >
-            <Text style = {{fontSize: 20}}>{value1}</Text>
-            <Text style = {{fontSize: 20}}>{value2}</Text>
-            <Text style = {{fontSize: 20}}>{value3}</Text>
-            <Text style = {{fontSize: 20}}>{value4}</Text>
-            <Text style = {{fontSize: 20}}>{value5}</Text>
+            <Text style = {{fontSize: 20}}>{value2} - {item.orderId}</Text>
+            <Text style = {{fontSize: 20}}>Customer Name - {item.userData[0].name} </Text>
+            <Text style = {{fontSize: 20}}>Phone No. - {item.userData[0].PhoneNumber} </Text>
+            <Text style = {{fontSize: 20}}>{value3}  -  {item.orderStatus}</Text>
+            <Text style = {{fontSize: 20}}>Total Item -  {item.OrderList.length} </Text>
+            <Text style = {{fontSize: 20}}>{value5} -  $ {item.totalPrice}</Text>
 
             </View>
-            <View style ={{marginLeft:200, marginTop:-130, justifyContent: 'flex-end', flexDirection: 'column'}}>
-                <Text style = {{fontSize: 20, }}>1</Text>
-                <Text style = {{fontSize: 20, }}>80921</Text>
-                <Text style = {{fontSize: 20, }}>28-01-2022</Text>
-                <Text style = {{fontSize: 20}}>08:05:16</Text>
-                <Text style = {{fontSize: 20}}>69$</Text>
-
-            </View>
+            
             </View>
           );
         }}
       />
 
-           
+    <Text style={{marginBottom:160}}>  </Text>
+         
 
-
-</ScrollView>
-
+</View>
                 
-
+</SafeAreaView>
             );
 };
+
+const styles = StyleSheet.create({
+  Icon: {
+    marginTop: 10,
+    marginHorizontal: 14,
+    fontSize: 34,
+  },
+  conStyle: {
+    backgroundColor: "white",
+    flex: 1,
+    paddingTop: 45,
+  },
+  logoStyle: {
+    fontSize: 40,
+    alignSelf: "center",
+    fontWeight: "bold",
+    color: "#753B05",
+  },
+});
 
 export default allOrders;

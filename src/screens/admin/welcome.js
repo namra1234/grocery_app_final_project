@@ -31,7 +31,7 @@ const welcome = ({ navigation }) => {
       />
       <View>
       
-      <Text style={styles.logoStyle}>Grocery Farm</Text>
+      <Text style={styles.logoStyle}>Grocery Farm   </Text>
       <View style={{marginLeft: 310, alignItems: 'center',marginTop: -43}}>
         <MaterialCommunityIcons name="truck-delivery-outline" style={{fontSize: 40, }} onPress={()=>navigation.navigate('allOrders')}/>
         <Text style = {{fontSize: 10}}>ORDERS</Text>

@@ -89,7 +89,8 @@ const checkoutScreen=({navigation})=>{
                 'userData' : constants.currentUserData,
                 'orderStatus' : 'On the way',
                 'OrderList' : constants.cartData,
-                'totalPrice' : '100'
+                'totalPrice' : '100',
+                'orderId':constants.orderHistory.length+1
                 };
 
                constants.orderHistory.push(orderData);

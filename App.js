@@ -33,7 +33,7 @@ const navigator = createStackNavigator(
     allOrders: allOrders,
   },
   {
-    initialRouteName: "welcome",
+    initialRouteName: "LogInScreen",
     defaultNavigationOptions: {
       // title: "Grocery Farm",
       headerShown:false,
