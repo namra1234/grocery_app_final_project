@@ -1,14 +1,22 @@
-import React from "react";
-import {View,Text,StyleSheet,TouchableOpacity, TextInput} from "react-native";
+import React,{useState} from "react";
+import {View,Text,StyleSheet,TouchableOpacity, TextInput,FlatList} from "react-native";
 import { Feather} from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import RadioButtonRN from "radio-buttons-react-native";
 import * as constants from "../constant/constant.js";
 import { AsyncStorage } from 'react-native';
 
-const checkoutScreen=({navigation})=>{
-  
-  const storeData = async (data,val) => {
+const Subtotal = 40;
+const Discount = 0;
+const Total = [Subtotal+Discount];
+
+
+const pickupScreen=({navigation})=>{
+  const [adress,setAdress] = useState("");
+
+    const storeDataDB = async (data,val) => {
     
     try {
       await AsyncStorage.setItem(        
@@ -20,6 +28,30 @@ const checkoutScreen=({navigation})=>{
     }
   };
 
+    const storeData = [
+        {
+            label: "2925 Sherbrooke Street East"
+        },
+        {
+            label: "2535 Rue Masson"
+        },
+        {
+            label: "4325 Rue Jean-Talon East"
+        },
+        {
+            label: "7605 Boulevard Maurice-Duplessis"
+        },
+        {
+            label: "6825 Ch.de la Cote-des-Neiges"
+        }
+    ]
+
+    const data=[
+        {
+            id:"1"
+        },
+    ]
+  
     return(
      <SafeAreaView style={{flex:1, backgroundColor:"white"}}>
          <View
@@ -38,14 +70,33 @@ const checkoutScreen=({navigation})=>{
         </View>
         <View style={styles.mainViewStyle}>
         <View style={{flexDirection:"row", justifyContent:"flex-start", padding:20}}>
-         <Text style={{fontWeight:"bold",fontSize:20}}>Delivery Address :</Text>
+         <Text style={{fontWeight:"bold",fontSize:20}}>Store Address :</Text>
          </View>
          <View style={styles.addressViewStyle}>
-         <Text style={{padding:20,fontSize:22,color:"green"}}>
-           4859 7e Avenue
-           Montreal,Quebec
-           H1Y 2M8
-         </Text>
+         <FlatList
+          showsVerticalScrollIndicator={false}
+          data={data}
+          keyExtractor={(data) => data.id}
+          renderItem={() => {
+              return(
+                <RadioButtonRN
+                data={storeData}
+                boxStyle={{width:"90%",alignSelf:"center"}}
+                selectedBtn={(e)=>setAdress(e.label)}
+                value={adress}
+                icon={
+                    <Icon
+                    name="check-circle"
+                    size={22}
+                    color="green"
+                    />
+                }
+                />
+              )
+          }}
+          />
+          
+         
          </View>
          <View style={styles.secondViewStyle}>
              <View style={styles.orderSummaryStyle}>
@@ -58,46 +109,43 @@ const checkoutScreen=({navigation})=>{
              </View>
              <View style={styles.subViewStyle}>
              <Text style={styles.textStyle}>Sub Total ()</Text>
-             <Text style={styles.textStyle}>40 $</Text>
+             <Text style={styles.textStyle}>{Subtotal} $</Text>
              </View>
              <View  style={styles.subViewStyle}>
              <Text style={styles.textStyle}>Discount</Text>
-             <Text style={styles.textStyle}>40 $</Text>
-             </View>
-             <View style={styles.subViewStyle}>
-             <Text style={styles.textStyle}>Delivery Charges</Text>
-             <Text style={styles.textStyle}>40 $</Text>
+             <Text style={styles.textStyle}>{Discount} $</Text>
              </View>
              <View style={styles.subViewStyle}>
              <Text style={{margin:10, fontSize:25,fontWeight:"bold"}}>Total</Text>
-             <Text style={{margin:10, fontSize:25,fontWeight:"bold"}}>120 $</Text>
+             <Text style={{margin:10, fontSize:25,fontWeight:"bold"}}>{Total} $</Text>
              </View>
          </View>
          <View style={styles.buttonViewStyle}> 
              <TouchableOpacity
-              onPress={()=>{navigation.navigate("HomeScreen")}}>
+              onPress={()=>{navigation.navigate("Cart")}}>
                  <View style={styles.cancelButtonStyle}>
                  <Text style={{color:"white",fontSize:18}}>Cancel</Text>
                  </View>
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-               alert("Order Confirmed and Email confirmation sent successfully"); 
+              alert("Order Confirmed and Email confirmation sent successfully"); 
 
 
-                var orderData= {
-                'userData' : constants.currentUserData,
-                'orderStatus' : 'On the way',
-                'OrderList' : constants.cartData,
-                'totalPrice' : '100',
-                'orderId':constants.orderHistory.length+1
-                };
+              var orderData= {
+              'userData' : constants.currentUserData,
+              'orderStatus' : 'On the way',
+              'OrderList' : constants.cartData,
+              'totalPrice' : '100',
+              'orderId':constants.orderHistory.length+1
+              };
 
-               constants.orderHistory.push(orderData);
-               let val=JSON.stringify(constants.orderHistory); 
-               storeData(val,'orderHistory');
-               constants.cartData=[];               
-               navigation.navigate("Timer");
+             constants.orderHistory.push(orderData);
+             let val=JSON.stringify(constants.orderHistory); 
+             storeDataDB(val,'orderHistory');
+             constants.cartData=[];
+               navigation.navigate("PickupTimer",{adress});
+               
                
                }}>
                  <View style={styles.payButtonStyle}>
@@ -127,7 +175,7 @@ const styles=StyleSheet.create({
          flexDirection:"column",
       },
       addressViewStyle:{
-        flex:1,
+        flex:2,
         borderWidth:1,
         borderColor:"black",
         marginLeft:30,
@@ -172,7 +220,7 @@ const styles=StyleSheet.create({
         borderRadius:15,
         alignItems:"center",
         justifyContent:"center",
-        marginTop:10,
+        marginTop:25,
       },
       cancelButtonStyle:{
         backgroundColor:"grey",
@@ -181,7 +229,7 @@ const styles=StyleSheet.create({
         borderRadius:15,
         alignItems:"center",
         justifyContent:"center",
-        marginTop:10,
+        marginTop:25,
       },
       inputStyle:{
         borderColor:"green",
@@ -195,10 +243,11 @@ const styles=StyleSheet.create({
       buttonViewStyle:{
         flexDirection:"row",
         justifyContent:"space-evenly",
-        padding:20, 
-        flex:0.7,
+        padding:10, 
+        flex:1,
+        //backgroundColor:"red"
        
       }
 })
 
-export default withNavigation(checkoutScreen);
+export default withNavigation(pickupScreen);

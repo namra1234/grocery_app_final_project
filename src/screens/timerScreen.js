@@ -6,6 +6,8 @@ import { Feather} from "@expo/vector-icons";
 import {CountdownCircleTimer} from "react-native-countdown-circle-timer";
 
 const timerScreen=({navigation})=>{
+  const storeAdress=navigation.getParam("adress");
+
     return(
         <SafeAreaView style={{flex:1,backgroundColor:"white"}}>
         <View
@@ -23,14 +25,14 @@ const timerScreen=({navigation})=>{
           <Text style={styles.logoStyle}>Delivery</Text>
          </View>
          <View style={styles.mainViewStyle}>
-           <Text style={{fontSize:24,marginLeft:15}}>Delivery Person Details:</Text>
+           <Text style={{fontSize:24,marginLeft:15,marginTop:10}}>Delivery Person Details:</Text>
            <View style={{flexDirection:"row",flex:2,justifyContent:"space-evenly",padding:20}}>
-              <View style={{backgroundColor:"red",flex:1}}>
+              <View style={{flex:1}}>
                 <Image style={styles.imageStyle} source={require('../../assets/guypic.jpg')}/>
               </View>
               <View style={{flex:1,justifyContent:"center"}}>
                 <Text style={{fontSize:26,alignSelf:"center"}}>Mike</Text>
-                <Text style={{fontSize:26,alignSelf:"center"}}>514-498-9989</Text>
+                <Text style={{fontSize:24,alignSelf:"center"}}>514-498-9989</Text>
               </View>
            </View>
              <View style={{flex:2,alignItems:"center",justifyContent:"center"}}>
@@ -43,7 +45,7 @@ const timerScreen=({navigation})=>{
                 ['red', 0.3],
                ]}
                size={200}
-               onComplete={()=>{}}
+               onComplete={()=>{alert('ThankYou, Keep Shopping with us')}}
                >
                  {({ remainingTime, animatedColor }) => (
                    <Animated.Text style={{ color: animatedColor }}>
@@ -58,7 +60,7 @@ const timerScreen=({navigation})=>{
              </View>
          </View>
          <View style={styles.secondViewStyle} >
-             <Text style={{fontSize:26,textAlign:"center"}}>We will deliver your order in above time limit</Text>
+             <Text style={{fontSize:20,textAlign:"center"}}>We will deliver your order for this adress <Text style={{color:"green"}}>{storeAdress}</Text> in above time limit.</Text>
          </View>
         </SafeAreaView>
     )

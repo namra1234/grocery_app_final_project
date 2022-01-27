@@ -1,10 +1,13 @@
 import React, {useState} from "react";
-import {View,Text,StyleSheet, FlatList, Image, Button, TouchableOpacity} from "react-native";
+import {View,Text,StyleSheet, FlatList, Image, Button, TouchableOpacity, Alert} from "react-native";
 import { Feather} from "@expo/vector-icons";
 import * as constants from "../constant/constant.js";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
 import CartListComponent from "../reuseable_components/CartListComponent";
+
+const TotalCost = 40;
+
 
 const cartScreen=({navigation})=>{
   
@@ -24,17 +27,16 @@ const cartScreen=({navigation})=>{
           </TouchableOpacity>
           <Text style={styles.logoStyle}>Cart</Text>
         </View>
-       <View style={{flex:3}}>
+       <View style={{flex:2}}>
          <View style={{flexDirection:"row", justifyContent:"space-between",margin:20}}>
          <Text style={{fontSize:20,fontWeight:"bold"}}>Products in Your cart</Text>
          <Text style={{fontSize:20, fontWeight:"bold"}}>{constants.cartData.length} items</Text>
          </View>
-        <FlatList
+         <FlatList
         showsVerticalScrollIndicator={false}
         data={constants.cartData}
         keyExtractor={(data) => data.id}
         renderItem={({ item }) => {
-          
           return (
             <CartListComponent
             resultsData={item} 
@@ -44,10 +46,15 @@ const cartScreen=({navigation})=>{
       />
       </View>
       <View style={{alignItems:"center", flex:1}}>
-      <Text style={styles.totalStyle}>Total Cost: 30$</Text>
-      <TouchableOpacity onPress={()=>{navigation.navigate("Checkout")}} >
+      <Text style={styles.totalStyle}>Total Cost: {TotalCost}$</Text>
+      <TouchableOpacity onPress={()=>{{constants.cartData.length > 0 ? (navigation.navigate("Delivery")): alert('Cart is empty')}}} >
         <View style={styles.checkoutStyle}>
-        <Text style={{fontSize:20,color:"white"}}>Proceed to Checkout</Text>
+        <Text style={{fontSize:20,color:"white"}}>Delivery</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={()=>{{constants.cartData.length > 0 ? (navigation.navigate("Pickup")): alert('Cart is empty')}}} >
+        <View style={styles.checkoutStyle}>
+        <Text style={{fontSize:20,color:"white"}}>Pickup</Text>
         </View>
       </TouchableOpacity>
       </View>
@@ -60,7 +67,7 @@ const styles= StyleSheet.create({
    fontSize:25,
    marginTop:10,
    marginLeft:100,
-   color:"green",
+   color:"black",
   },
   logoStyle: {
     fontSize: 40,
@@ -86,7 +93,7 @@ const styles= StyleSheet.create({
     color: "black",
   },
   checkoutStyle:{
-    margin:20,
+    margin:10,
     borderRadius:20,
     backgroundColor:"green",
     width:300,
