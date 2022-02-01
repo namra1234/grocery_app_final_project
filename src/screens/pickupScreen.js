@@ -144,6 +144,8 @@ const pickupScreen=({navigation})=>{
              let val=JSON.stringify(constants.orderHistory); 
              storeDataDB(val,'orderHistory');
              constants.cartData=[];
+             navigation.pop();
+             navigation.pop();
                navigation.navigate("PickupTimer",{adress});
                
                
