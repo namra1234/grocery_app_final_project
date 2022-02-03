@@ -17,6 +17,8 @@ import pickupScreen from "./src/screens/pickupScreen";
 import profileScreen from "./src/screens/profileScreen";
 import pickupTimerScreen from "./src/screens/pickupTimerScreen";
 import allOrders from "./src/screens/admin/allOrders";
+import DetailsListOfHistory from "./src/screens/admin/DetailsListOfHistory";
+
 
 const navigator = createStackNavigator(
   {
@@ -37,6 +39,7 @@ const navigator = createStackNavigator(
     Profile: profileScreen,
     PickupTimer: pickupTimerScreen,
     allOrders: allOrders,
+    DetailsListOfHistory:DetailsListOfHistory
   },
   {
     initialRouteName: "LogInScreen",
