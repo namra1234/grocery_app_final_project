@@ -42,7 +42,13 @@ const allOrders = ({navigation})=> {
         renderItem={({ item }) => {
           console.log(item);
           return (
-
+            <TouchableOpacity
+            onPress={()=>{
+             const products=item.OrderList;
+              navigation.navigate("DetailsListOfHistory",{products});
+            }
+          }
+          >
             <View style={{borderColor: 'black', width: '80%', height: 200, marginTop: 20, marginLeft: 40, borderWidth: 2, borderRadius: 10}}>
             <View style ={{ justifyContent: 'flex-start', marginTop:10, marginLeft: 8, flexDirection: 'column', justifyContent:'space-between'}} >
             <Text style = {{fontSize: 20}}>{value2} - {item.orderId}</Text>
@@ -55,6 +61,7 @@ const allOrders = ({navigation})=> {
             </View>
             
             </View>
+            </TouchableOpacity>
           );
         }}
       />
