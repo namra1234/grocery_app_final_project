@@ -16,6 +16,7 @@ import  userResults from "../result_data/userResults";
 import * as constants from "../constant/constant.js";
 import { Feather } from "@expo/vector-icons";
 import { NavigationEvents } from "react-navigation";
+import { SliderBox } from "react-native-image-slider-box";
 
 
 const HomeScreen = ({ navigation }) => {
@@ -26,11 +27,17 @@ const HomeScreen = ({ navigation }) => {
   const [allProductDataCurrData, setAllData] = useState(constants.allProductData);
   const [FavouriteDataCurrData, setFavouriteData] = useState(constants.favouriteProductData);
   const [WeeklyOfferCurrData, setWeeklyOfferData] = useState(constants.weeklyOfferData);
-  
+  const images = ["https://cdn.static-zoutons.com/images/originals/coupon-category/Grocery_Deals_1588267949.jpg",
+  "https://image.shutterstock.com/image-vector/special-offer-grocery-store-advertisement-600w-1123205801.jpg",
+  "https://darkroom.contagious.com/1000/8c6f689d88bd5c5c6848514760bdf4d3:5a50f1f17e01fa8d4e61d95a3bb26e18/ot2.jpg",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvd38eCwImuEzqXqmjlgjR_jddFgo-TnKWQw&usqp=CAU"
+];
 
   const FilterRes = (givenWord) => {
 
     const filterData = [];
+
+
     for(let i = 0; i < constants.allProductData.length; i++)
     {
       if(constants.allProductData[i].name.toLowerCase().includes(givenWord.toLowerCase()))
@@ -120,7 +127,20 @@ const HomeScreen = ({ navigation }) => {
         style={{ flex: 1 }}
         onWordSubmit={() => FilterRes(givenWord)}
       />
+
+
+
       <ScrollView style={{ padding: 20 ,height:"90%"}}>
+      <View style={{marginBottom: 30}} >
+            <SliderBox
+                images={images}
+                sliderBoxHeight={200}
+                onCurrentImagePressed={index =>
+                    console.warn(`image ${index} pressed`)
+                }
+                // parentWidth={this.state.width}
+            />
+        </View>
         <ListOfResult          
           titleData="Weekly Offers"
           subtitleData="View All"
