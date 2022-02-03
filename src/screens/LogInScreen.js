@@ -37,9 +37,8 @@ const LogInScreen = ({ navigation }) => {
       if (data == "weeklyOfferData") {
         if (value !== null) {
           constants.weeklyOfferData = JSON.parse(value);
-          console.log("data available        " + constants.weeklyOfferData);
+          console.log(constants.weeklyOfferData);
         } else {
-          console.log("data not available");
           let val = JSON.stringify(constants.weeklyOfferData);
           storeData(val, "weeklyOfferData");
         }
@@ -60,7 +59,7 @@ const LogInScreen = ({ navigation }) => {
       } else if (data == "orderHistory") {
         if (value !== null) {
           constants.orderHistory = JSON.parse(value);
-          console.log(constants.orderHistory);
+      
         } else {
           let val = JSON.stringify(constants.orderHistory);
           storeData(val, "orderHistory");
@@ -119,6 +118,7 @@ const LogInScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.bStyle}
             onPress={() => {
+              
               if (emailId == "admin" && password == "admin")
                 navigation.navigate("welcome");
               else {

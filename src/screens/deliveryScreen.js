@@ -102,7 +102,9 @@ const deliveryScreen=({navigation})=>{
              let val=JSON.stringify(constants.orderHistory); 
              storeData(val,'orderHistory');
              constants.cartData=[]; 
-               navigation.navigate("Timer",{adress});
+             navigation.pop();
+             navigation.pop();
+             navigation.navigate("Timer",{adress});
                
                
                }}>
