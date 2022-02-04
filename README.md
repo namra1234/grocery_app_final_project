@@ -11,8 +11,10 @@ Team Members
 
 Tasks done by team members
 
+--------------------------------------------------------------------------------------------------------
+
 Name:- Namra Patel ( 2093971 )
-        Task:-
+        
         
         Selected theme for application
         Find all Images for applications
@@ -24,7 +26,6 @@ Name:- Namra Patel ( 2093971 )
             -	Added validation
             -	Facebook Login 
             -	Google Login
-
         2.	SignUp Page
             UI
             -	Created Form for user signup
@@ -32,7 +33,6 @@ Name:- Namra Patel ( 2093971 )
             -	Add User data to Local Storage Of Mobile Phone 
             -	Check user is there or not If user already exist show popup
             -	Added validation
-
         3.	Home Page
             UI
             -	Created responsive UI
@@ -41,7 +41,6 @@ Name:- Namra Patel ( 2093971 )
             Backend
             -	Fetch all data from Local Storage Of Mobile Phone 
             -	Set into UI 
-
         4.	Weekly Offers Page
             UI
             -	Created responsive UI
