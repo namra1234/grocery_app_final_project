@@ -111,7 +111,7 @@ const deliveryScreen=({navigation})=>{
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-              alert("Order Confirmed and Email confirmation sent successfully"); 
+               
 
 
               var orderData= {
@@ -126,7 +126,7 @@ const deliveryScreen=({navigation})=>{
              let val=JSON.stringify(constants.orderHistory); 
              storeData(val,'orderHistory');
              constants.cartData=[]; 
-               navigation.navigate("Timer",{adress});
+              
                adress? (emailConfirmation(),
                               alert("Order Confirmed and Email confirmation sent successfully"),
                               navigation.pop(),

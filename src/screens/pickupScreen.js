@@ -152,9 +152,7 @@ const pickupScreen=({navigation})=>{
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-              alert("Order Confirmed and Email confirmation sent successfully"); 
-
-
+              
               var orderData= {
               'userData' : constants.currentUserData,
               'orderStatus' : 'On the way',
