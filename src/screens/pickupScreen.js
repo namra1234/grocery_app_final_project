@@ -5,16 +5,38 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButtonRN from "radio-buttons-react-native";
-import * as constants from "../constant/constant.js";
 import { AsyncStorage } from 'react-native';
+import axios from "axios";
 
 const Subtotal = 40;
 const Discount = 0;
 const Total = [Subtotal+Discount];
 
+const apiURL=`https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send`;
+
+const emailConfirmation=()=>{
+  console.log("Hello");
+    axios(apiURL,{
+    method: "POST",
+    headers:{
+    'content-type': 'application/json',
+    'x-rapidapi-host': 'rapidprod-sendgrid-v1.p.rapidapi.com',
+    'x-rapidapi-key': '715c5ee500msh0c02117a5ae5965p1c9911jsn5a847ac72784'
+    },
+    data: {
+      personalizations: [{to: [{email: "saikiran.redddy@gmail.com"}], subject: 'Order Confirmation'}],
+      from: {email: 'groceryfarm@gmail.com'},
+      content: [{type: 'text/plain', value: 'Your order is confirmed and you can pick up at selected store in 30 minutes.'}]
+    }
+  })
+  .then((response)=>{
+    console.log(response);
+  })
+  .catch((error => alert(error)))
+}
 
 const pickupScreen=({navigation})=>{
-  const [adress,setAdress] = useState("");
+  const [adress,setAdress] = useState("");  
 
     const storeDataDB = async (data,val) => {
     
@@ -129,10 +151,7 @@ const pickupScreen=({navigation})=>{
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-              alert("Order Confirmed and Email confirmation sent successfully"); 
-
-
-              var orderData= {
+             var orderData= {
               'userData' : constants.currentUserData,
               'orderStatus' : 'On the way',
               'OrderList' : constants.cartData,
@@ -144,10 +163,13 @@ const pickupScreen=({navigation})=>{
              let val=JSON.stringify(constants.orderHistory); 
              storeDataDB(val,'orderHistory');
              constants.cartData=[];
-               navigation.navigate("PickupTimer",{adress});
-               
-               
-               }}>
+             navigation.pop();
+             navigation.pop();
+             adress ? (emailConfirmation(),
+              alert("Order Confirmed and Email confirmation sent successfully"),
+              navigation.navigate("PickupTimer",{adress}))
+              : alert("Please Select Store Address to pickup");
+             }}>
                  <View style={styles.payButtonStyle}>
                  <Text style={{color:"white",fontSize:18}}>Pay Now</Text>
                  </View>
