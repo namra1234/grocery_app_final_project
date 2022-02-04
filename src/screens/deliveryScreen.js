@@ -25,7 +25,7 @@ const emailConfirmation=()=>{
     'x-rapidapi-key': '715c5ee500msh0c02117a5ae5965p1c9911jsn5a847ac72784'
     },
     data: {
-      personalizations: [{to: [{email: 'saikiran.redddy@gmail.com'}], subject: 'Order Confirmation'}],
+      personalizations: [{to: [{email: constants.currentUserData[0].email}], subject: 'Order Confirmation'}],
       from: {email: 'groceryfarm@gmail.com'},
       content: [{type: 'text/plain', value: 'Your order is confirmed and be delivered in 30 minutes.'}]
     }
@@ -120,7 +120,7 @@ const deliveryScreen=({navigation})=>{
               'orderId':constants.orderHistory.length+1
               };
 
-             
+            
               
               
                adress? (emailConfirmation(),

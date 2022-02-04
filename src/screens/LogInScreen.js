@@ -63,7 +63,7 @@ const LogInScreen = ({ navigation }) => {
                 PhoneNumber: '',
                 address: '',
               };
-              constants.currentUserData=userInfo;
+              constants.currentUserData[0]=userInfo;
               navigation.navigate("HomeScreen");
               
       } else {
@@ -101,7 +101,7 @@ console.log(result);
         PhoneNumber: '',
         address: '',
       };
-      constants.currentUserData=userInfo;
+      constants.currentUserData[0]=userInfo;
       navigation.navigate("HomeScreen");
       } else {
         //CANCELc
