@@ -161,13 +161,13 @@ const pickupScreen=({navigation})=>{
               'orderId':constants.orderHistory.length+1
               };
 
-             constants.orderHistory.push(orderData);
-             let val=JSON.stringify(constants.orderHistory); 
-             storeDataDB(val,'orderHistory');
-             constants.cartData=[];
+             
 
              adress ? (emailConfirmation(),
               alert("Order Confirmed and Email confirmation sent successfully"),
+              constants.orderHistory.push(orderData),
+             storeDataDB(JSON.stringify(constants.orderHistory),'orderHistory'),
+             constants.cartData=[],
               navigation.pop(),
               navigation.pop(),
               navigation.navigate("PickupTimer",{adress}))
