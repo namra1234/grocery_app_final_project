@@ -3,16 +3,19 @@
 Contribution
 
 Team Members
-Namra Patel – 2093971
-SaiKiran Reddy – 2092420
-Venkata Sai Pranay Gali – 2092107
-Ranadeep Inala - 2191980
+
+        Namra Patel – 2093971
+        SaiKiran Reddy – 2092420
+        Venkata Sai Pranay Gali – 2092107
+        Ranadeep Inala - 2191980
 
 Tasks done by team members
+
 Name:- Namra Patel ( 2093971 )
-Task:-
-Selected theme for application
-Find all Images for applications
+        Task:-
+        
+        Selected theme for application
+        Find all Images for applications
         1.	LogIn Page
             UI   
             Backend
