@@ -153,15 +153,22 @@ const pickupScreen=({navigation})=>{
              <TouchableOpacity
              onPress={()=>{
               
+              var tempTotalCost=0;
+ 
+              for(var i=0; i < constants.cartData.length ; i++)
+              {
+                
+                tempTotalCost+=(constants.cartData[i].price*parseInt(constants.cartData[i].qty));
+                
+                console.log(tempTotalCost);
+              }
               var orderData= {
               'userData' : constants.currentUserData,
               'orderStatus' : 'On the way',
               'OrderList' : constants.cartData,
-              'totalPrice' : '100',
+              'totalPrice' : tempTotalCost,
               'orderId':constants.orderHistory.length+1
               };
-
-             
 
              adress ? (emailConfirmation(),
               alert("Order Confirmed and Email confirmation sent successfully"),
