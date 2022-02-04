@@ -6,11 +6,25 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
 import CartListComponent from "../reuseable_components/CartListComponent";
 
-const TotalCost = 40;
-
-
 const cartScreen=({navigation})=>{
-  
+
+
+  const [TotalCost, setTotalCost] = useState(0);
+  var tempTotalCost=0;
+  const totalCalculation = () => {
+    
+  for(var i=0; i < constants.cartData.length ; i++)
+  {
+    
+    tempTotalCost+=(constants.cartData[i].price*parseInt(constants.cartData[i].qty));
+    
+    console.log(tempTotalCost);
+  }
+  // setTotalCost(tempTotalCost);
+}
+
+totalCalculation();
+
  return(
      <SafeAreaView style={{flex:1, backgroundColor:"white"}}>
         <View
@@ -46,7 +60,7 @@ const cartScreen=({navigation})=>{
       />
       </View>
       <View style={{alignItems:"center", flex:1}}>
-      <Text style={styles.totalStyle}>Total Cost: {TotalCost}$</Text>
+      <Text style={styles.totalStyle}>Total Cost: ${tempTotalCost}</Text>
       <TouchableOpacity onPress={()=>{{constants.cartData.length > 0 ? (navigation.navigate("Delivery")): alert('Cart is empty')}}} >
         <View style={styles.checkoutStyle}>
         <Text style={{fontSize:20,color:"white"}}>Delivery</Text>
