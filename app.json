@@ -27,6 +27,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "ANDROID_KEY": "996379606224-f2cch45636tb0e16jfvb5s2sb162l2kf.apps.googleusercontent.com",
+      "facebook": {
+        "appId": "536679207881069"
+      }
+      }
   }
 }
