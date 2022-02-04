@@ -157,11 +157,11 @@ const adminDetailScreen = ({ navigation }) => {
                             if(WeeklyDeal)
                             {
                             constants.weeklyOfferData=constants.weeklyOfferData.filter(item => item !== productData);
-                            storeData(constants.weeklyOfferData,'weeklyOfferData');
+                            storeData(JSON.stringify(constants.weeklyOfferData),'weeklyOfferData');
                             }
                             else{
                             constants.allProductData=constants.allProductData.filter(item => item !== productData);
-                            storeData(constants.allProductData,'allProductData');
+                            storeData(JSON.stringify(constants.allProductData),'allProductData');
                             }
                             
                             navigation.pop();

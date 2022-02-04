@@ -16,10 +16,109 @@ import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
 import * as constants from "../constant/constant.js"
+import Constants from "expo-constants";
+import * as Google from "expo-google-app-auth";
+import * as Facebook from "expo-facebook";
+
+import {
+  onAuthStateChanged,
+  signInWithCredential,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
+import { auth, db } from "../firebase/config.js";
 
 const LogInScreen = ({ navigation }) => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+
+
+
+
+  const googleLogin = async () => {
+    try {
+      const result = await Google.logInAsync({
+        //return an object with result token and user
+        androidClientId: Constants.manifest.extra.ANDROID_KEY, //From app.json
+        scopes: ["email", "profile"],
+      });
+      if (result.type === "success") {
+        
+        console.log(result);
+        var id = Math.floor(Math.random() * 10000) + 1;
+
+              var userInfo = {
+                id: id,
+                name: result.user.givenName,
+                Lastname: result.user.familyName,
+                email: result.user.email,
+                password: '',
+                PhoneNumber: '',
+                address: '',
+              };
+              constants.currentUserData=userInfo;
+              navigation.navigate("HomeScreen");
+              
+      } else {
+        //CANCEL
+        console.log(result);
+      }
+    } catch ({ message }) {
+      alert("login: Error:" + message);
+    }
+  };
+
+ 
+  const facebookLogin = async () => {
+    try {
+      await Facebook.initializeAsync({
+        appId: Constants.manifest.extra.facebook.appId,
+      });
+      const result = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ["public_profile"],
+      });
+      if (result.type === "success") {
+console.log(result);
+        const response = await (await fetch(`https://graph.facebook.com/me?access_token=${result.token}`)).json();
+        console.log(response.name);
+        
+      //  alert('Logged in!', `Hi ${(await response.json()).name}!`);
+      var id = Math.floor(Math.random() * 10000) + 1;
+
+      var userInfo = {
+        id: id,
+        name: response.name,
+        Lastname: '',
+        email: '',
+        password: '',
+        PhoneNumber: '',
+        address: '',
+      };
+      constants.currentUserData=userInfo;
+      navigation.navigate("HomeScreen");
+      } else {
+        //CANCELc
+        console.log(result);
+      }
+    } catch ({ message }) {
+      alert("login: Error:" + message);
+    }
+  };
+
+
+
+
+
+
+
+
 
   const storeData = async (data, val) => {
     try {
@@ -37,9 +136,8 @@ const LogInScreen = ({ navigation }) => {
       if (data == "weeklyOfferData") {
         if (value !== null) {
           constants.weeklyOfferData = JSON.parse(value);
-          console.log("data available        " + constants.weeklyOfferData);
+          console.log(constants.weeklyOfferData);
         } else {
-          console.log("data not available");
           let val = JSON.stringify(constants.weeklyOfferData);
           storeData(val, "weeklyOfferData");
         }
@@ -60,7 +158,7 @@ const LogInScreen = ({ navigation }) => {
       } else if (data == "orderHistory") {
         if (value !== null) {
           constants.orderHistory = JSON.parse(value);
-          console.log(constants.orderHistory);
+      
         } else {
           let val = JSON.stringify(constants.orderHistory);
           storeData(val, "orderHistory");
@@ -119,6 +217,7 @@ const LogInScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.bStyle}
             onPress={() => {
+              
               if (emailId == "admin" && password == "admin")
                 navigation.navigate("welcome");
               else {
@@ -153,14 +252,22 @@ const LogInScreen = ({ navigation }) => {
               alignSelf: "center",
             }}
           >
-            <Image
+          <TouchableOpacity
+            onPress={facebookLogin}
+            style={styles.buttonFacebook}
+          ><Image
               source={require("../../assets/facebook.png")}
               style={styles.IconStyle}
-            />
-            <Image
+            /></TouchableOpacity>
+            
+
+          <TouchableOpacity onPress={googleLogin} style={styles.buttonGoogle}>
+          <Image
               source={require("../../assets/google.png")}
               style={styles.IconStyle}
             />
+          </TouchableOpacity>
+            
           </View>
           <Text style={{ color: "gray", alignSelf: "center", marginTop: 25 }}>
             Don't have an account?

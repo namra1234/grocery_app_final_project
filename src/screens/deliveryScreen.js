@@ -111,24 +111,30 @@ const deliveryScreen=({navigation})=>{
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-               var orderData= {
-                'userData' : constants.currentUserData,
-                'orderStatus' : 'On the way',
-                'OrderList' : constants.cartData,
-                'totalPrice' : '100',
-                'orderId':constants.orderHistory.length+1
-                };
-  
-               constants.orderHistory.push(orderData);
-               let val=JSON.stringify(constants.orderHistory); 
-               storeDataDB(val,'orderHistory');
-               constants.cartData=[];
-               navigation.pop();
-               navigation.pop();
+              alert("Order Confirmed and Email confirmation sent successfully"); 
+
+
+              var orderData= {
+              'userData' : constants.currentUserData,
+              'orderStatus' : 'On the way',
+              'OrderList' : constants.cartData,
+              'totalPrice' : '100',
+              'orderId':constants.orderHistory.length+1
+              };
+
+             constants.orderHistory.push(orderData);
+             let val=JSON.stringify(constants.orderHistory); 
+             storeData(val,'orderHistory');
+             constants.cartData=[]; 
+               navigation.navigate("Timer",{adress});
                adress? (emailConfirmation(),
-               alert("Order Confirmed and Email confirmation sent successfully"),
-               navigation.navigate("Timer",{adress}))
-               :alert("Please Select delivery address");
+                              alert("Order Confirmed and Email confirmation sent successfully"),
+                              navigation.pop(),
+                              navigation.pop(),
+                              navigation.navigate("Timer",{adress}))
+                              :alert("Please Select delivery address");
+
+               
                }}>
                  <View style={styles.payButtonStyle}>
                  <Text style={{color:"white",fontSize:18}}>Pay Now</Text>

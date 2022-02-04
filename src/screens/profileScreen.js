@@ -4,13 +4,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
 import { Feather} from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
+import * as constants from "../constant/constant.js";
 
-const UserName = "Customer Name";
-const UserEmail= "customeremail@gmail.com";
-const UserNumber = "000-000-0000";
 
 
 const profileScreen=({navigation})=>{
+
+const UserName = constants.currentUserData[0].name + " " + constants.currentUserData[0].Lastname;
+const UserEmail= constants.currentUserData[0].email;
+const UserNumber = constants.currentUserData[0].PhoneNumber;
 
     return(
         <SafeAreaView>

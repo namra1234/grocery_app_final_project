@@ -39,6 +39,29 @@ const AllProduct = ({ navigation }) => {
     setData(filterData);
   };
 
+
+  const shortDataLHFun = () => {
+
+    const filterData = constants.allProductData;
+
+
+    const recentprods = filterData
+  .sort((a,b) => a.price - b.price);
+    
+    setData(recentprods);
+  };
+
+  const shortDataHLFun = () => {
+
+    const filterData = constants.allProductData;
+
+
+    const recentprods = filterData
+  .sort((a,b) =>  b.price - a.price );
+    
+    setData(recentprods);
+  };
+
   return (
     <SafeAreaView style={styles.conStyle}>
     <View>
@@ -52,7 +75,7 @@ const AllProduct = ({ navigation }) => {
         onWordSubmit={() => FilterRes(givenWord)}
       />
           <ScrollView style={{ padding: 20 ,height:"90%"}}>
-<View style={{flexDirection: "row",height:40,alignContent: "space-between",marginLeft:"5%",marginTop:0,width:500}}>
+{/* <View style={{flexDirection: "row",height:40,alignContent: "space-between",marginLeft:"5%",marginTop:0,width:500}}>
       
 
       <View
@@ -103,7 +126,7 @@ const AllProduct = ({ navigation }) => {
       </TouchableOpacity>
       </View>
       
-      </View>
+      </View> */}
 
       <View style={{flexDirection: "row",height:40 ,alignContent: "space-between",marginLeft:"5%",marginTop:10,marginBottom:10}}>  
 
@@ -113,7 +136,21 @@ const AllProduct = ({ navigation }) => {
               onPress={()=> {
                 console.log("Hello");
                 console.log("shortLH "+shortLH);
-                shortLH ? setshortLH(false) : setshortLH(true);
+
+                if(shortLH)
+                {
+                  FilterRes('');
+                  setshortLH(false);
+                }
+                else{
+                  shortDataLHFun();
+                  setshortLH(true);
+
+                  if(shortHL)                  
+                  setshortHL(false);
+                }
+
+                
               }
               }
             >
@@ -130,7 +167,20 @@ const AllProduct = ({ navigation }) => {
               onPress={()=> {
                 console.log("Hello");
                 console.log("shortHL "+shortHL);
-                shortHL ? setshortHL(false) : setshortHL(true);
+
+                if(shortHL)
+                {
+                  FilterRes('');
+                  setshortHL(false);
+                }
+                else
+                {
+                  shortDataHLFun();
+                  setshortHL(true);
+
+                  if(shortLH)
+                  setshortLH(false);
+                }
               }
               }
             >

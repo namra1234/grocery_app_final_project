@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { withNavigation } from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButtonRN from "radio-buttons-react-native";
+import * as constants from "../constant/constant.js";
 import { AsyncStorage } from 'react-native';
 import axios from "axios";
 
@@ -36,7 +37,7 @@ const emailConfirmation=()=>{
 }
 
 const pickupScreen=({navigation})=>{
-  const [adress,setAdress] = useState("");  
+  const [adress,setAdress] = useState("");
 
     const storeDataDB = async (data,val) => {
     
@@ -151,7 +152,10 @@ const pickupScreen=({navigation})=>{
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-             var orderData= {
+              alert("Order Confirmed and Email confirmation sent successfully"); 
+
+
+              var orderData= {
               'userData' : constants.currentUserData,
               'orderStatus' : 'On the way',
               'OrderList' : constants.cartData,
@@ -163,10 +167,11 @@ const pickupScreen=({navigation})=>{
              let val=JSON.stringify(constants.orderHistory); 
              storeDataDB(val,'orderHistory');
              constants.cartData=[];
-             navigation.pop();
-             navigation.pop();
+
              adress ? (emailConfirmation(),
               alert("Order Confirmed and Email confirmation sent successfully"),
+              navigation.pop(),
+              navigation.pop(),
               navigation.navigate("PickupTimer",{adress}))
               : alert("Please Select Store Address to pickup");
              }}>
