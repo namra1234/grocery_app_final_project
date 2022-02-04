@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View,Text,StyleSheet, FlatList, Image, Button, TouchableOpacity, Alert} from "react-native";
+import {View,Text,StyleSheet, FlatList, Image, Button, TouchableOpacity} from "react-native";
 import { Feather} from "@expo/vector-icons";
 import * as constants from "../constant/constant.js";
 import { SafeAreaView } from "react-native-safe-area-context";

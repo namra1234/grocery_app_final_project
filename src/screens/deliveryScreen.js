@@ -6,11 +6,35 @@ import { withNavigation } from "react-navigation";
 import SearchBar from "../reuseable_components/SearchBar";
 import * as constants from "../constant/constant.js";
 import { AsyncStorage } from 'react-native';
+import axios from "axios";
 
 const Subtotal = 40;
 const Discount = 0;
 const Delivery = 15;
 const Total = [Subtotal+Delivery+Discount];
+
+const apiURL=`https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send`;
+
+const emailConfirmation=()=>{
+  console.log("Hello");
+    axios(apiURL,{
+    method: "POST",
+    headers:{
+    'content-type': 'application/json',
+    'x-rapidapi-host': 'rapidprod-sendgrid-v1.p.rapidapi.com',
+    'x-rapidapi-key': '715c5ee500msh0c02117a5ae5965p1c9911jsn5a847ac72784'
+    },
+    data: {
+      personalizations: [{to: [{email: 'saikiran.redddy@gmail.com'}], subject: 'Order Confirmation'}],
+      from: {email: 'groceryfarm@gmail.com'},
+      content: [{type: 'text/plain', value: 'Your order is confirmed and be delivered in 30 minutes.'}]
+    }
+  })
+  .then((response)=>{
+    console.log(response);
+  })
+  .catch((error => alert(error)))
+}
 
 
 const deliveryScreen=({navigation})=>{
@@ -87,8 +111,6 @@ const deliveryScreen=({navigation})=>{
              </TouchableOpacity>
              <TouchableOpacity
              onPress={()=>{
-              alert("Order Confirmed and Email confirmation sent successfully"); 
-
 
               var orderData= {
               'userData' : constants.currentUserData,
@@ -98,14 +120,19 @@ const deliveryScreen=({navigation})=>{
               'orderId':constants.orderHistory.length+1
               };
 
-             constants.orderHistory.push(orderData);
-             let val=JSON.stringify(constants.orderHistory); 
-             storeData(val,'orderHistory');
-             constants.cartData=[]; 
-             navigation.pop();
-             navigation.pop();
-             navigation.navigate("Timer",{adress});
-               
+             
+              
+              
+               adress? (emailConfirmation(),
+                              alert("Order Confirmed and Email confirmation sent successfully"),
+                              constants.orderHistory.push(orderData),
+                              storeData(JSON.stringify(constants.orderHistory),'orderHistory'),
+                              constants.cartData=[],
+                              navigation.pop(),
+                              navigation.pop(),                              
+                              navigation.navigate("Timer",{adress}))
+                              :alert("Please Select delivery address");
+
                
                }}>
                  <View style={styles.payButtonStyle}>
